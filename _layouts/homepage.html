@@ -54,7 +54,7 @@
         <br>
         {% endif %}
         {% if site.email %}
-        <email>{{ site.email }}</email>
+        <a href="mailto:{{ site.email }}" rel="noopener"><email>{{ site.email }}</email></a>
         {% endif %}
 
         <br>
