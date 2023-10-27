@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .pub-row {
@@ -111,7 +111,7 @@ body {
 
 email {
     font-size: 14px;
-    font-family: "Ubuntu Mono";
+    // font-family: "Ubuntu Mono";
 }
 
 .icon-button i{
@@ -417,7 +417,7 @@ header ul a:active {
 
 strong {
   color:#222;
-  font-weight:500;
+  font-weight:bold;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -446,6 +446,7 @@ section {
 
 small {
   font-size:11px;
+  display: inline-block;
 }
 
 hr {
