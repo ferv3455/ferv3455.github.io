@@ -6,7 +6,30 @@ layout: homepage
 
 ## About Me
 
-I am an undergraduate student at Tsinghua University, majoring in Software Engineering.
+I am a first-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN). I expect to finish my coursework and begin my career in December, 2025.
+
+As an international student from China, I finished my school years in my hometown Shanghai and my bachelor's degree at Tsinghua University in Beijing.
+
+
+## Education
+
+- **Carnegie Mellon University**, Master of Science in Information Networking <small>(August 2024 – Present)</small>
+  - Courses: Introduction to Computer Systems, Networking and the Internet, Distributed Systems
+- **Tsinghua University**, Bachelor’s in Software Engineering (GPA: 3.90/4.00) <small>(August 2019 – July 2024)</small>
+  - Courses: Computer Organization and Network, Software Engineering, Database Systems, Artificial Intelligence
+  - Honors: Scholarship for Academic Excellence (four times in 2020, 2021, 2022, 2023)
+
+
+
+## Internship Experiences <small>[[Show Details]](/intern)</small>
+
+- **Click Farming Detection based on Comment Content and Language Model** <small>(June 2023 - July 2023)</small>
+  - Risk Control R&D Department, Beijing Jingdong Century Trading Co., Ltd.
+  - Supervisor: Nan Lu, Algorithm Application Engineer
+- **Click Farming Detection based on the Similarity of Comment Pictures** <small>(July 2023 - August 2023)</small>
+  - Risk Control R&D Department, Beijing Jingdong Century Trading Co., Ltd.
+  - Supervisor: Nan Lu, Algorithm Application Engineer
+
 
 ## Publications
 
@@ -17,27 +40,19 @@ I am an undergraduate student at Tsinghua University, majoring in Software Engin
 - **Deep Active Learning with Noise Stability** <small>(July 2023 - August 2023)</small>
   - Computational Biology Department, Carnegie Mellon University
   - Advisor: Min Xu, Associated Professor
-- **Bi-level Optimization for Inductive Transfer Learning** <small>(August 2023 - Present)</small>
+- **Bi-level Optimization for Inductive Transfer Learning** <small>(August 2023 - July 2024)</small>
   - Computational Biology Department, Carnegie Mellon University
   - Advisor: Min Xu, Associated Professor
 - **Log Data Encoding for Efficient Storage in Apache IoTDB** <small>(October 2022 - May 2023)</small>
   - School of Software, Tsinghua University
   - Advisor: Shaoxu Song, Associated Professor
-- **Developing a Network Security Data Management System** <small>(October 2023 - Present)</small>
+- **Developing a Network Security Data Management System** <small>(October 2023 - December 2023)</small>
   - School of Software, Tsinghua University
   - Advisor: Hai Wang, Associate Research Fellow
 - **Visual Perception and Understanding of Three-dimensional Scenes: Action Recognition** <small>(October 2021 - September 2022)</small>
   - School of Software, Tsinghua University
   - Advisor: Yue Gao, Associate Professor
 
-## Internship Experiences <small>[[Show Details]](/intern)</small>
-
-- **Click Farming Detection based on Comment Content and Language Model** <small>(June 2023 - July 2023)</small>
-  - Risk Control R&D Department, Beijing Jingdong Century Trading Co., Ltd.
-  - Supervisor: Nan Lu, Algorithm Application Engineer
-- **Click Farming Detection based on the Similarity of Comment Pictures** <small>(July 2023 - August 2023)</small>
-  - Risk Control R&D Department, Beijing Jingdong Century Trading Co., Ltd.
-  - Supervisor: Nan Lu, Algorithm Application Engineer
 
 <!-- ## Project Experiences <small>[[Show Details]](/project)</small> -->
 ## Project Experiences

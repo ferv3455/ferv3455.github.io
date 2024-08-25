@@ -28,7 +28,7 @@ layout: homepage
         Computational Biology Department, Carnegie Mellon University
         <br />
         Advisor: Min Xu, Associated Professor
-        <div style="text-align: right;">August 2023 - Present</div>
+        <div style="text-align: right;">August 2023 - July 2024</div>
     </div>
 </p>
 
@@ -65,7 +65,7 @@ layout: homepage
         School of Software, Tsinghua University
         <br />
         Advisor: Hai Wang, Associate Research Fellow
-        <div style="text-align: right;">October 2023 - Present</div>
+        <div style="text-align: right;">October 2023 - December 2023</div>
     </div>
 </p>
 
