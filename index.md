@@ -10,6 +10,12 @@ I am a first-year graduate student at Carnegie Mellon University, pursuing my de
 
 As an international student from China, I finished my school years in my hometown Shanghai and my bachelor's degree at Tsinghua University in Beijing.
 
+## About the Webpage
+
+This webpage acts as an introduction to my academic and professional experience as well as an archive of previously published personal blogs. The content of these blogs are technical notes from extensive reading and projects, involving programming languages, data structures and algorithms, computer systems, etc. They are written in Chinese/English.
+
+To have a look at the notes, please visit [here](/postlist).
+
 
 ## Education
 
