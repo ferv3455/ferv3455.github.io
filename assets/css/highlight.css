@@ -8,14 +8,14 @@
 
 code {
     font-family: 'Roboto Mono', monospace;
+    color: #222;
+    padding: 0 3px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
 }
 
 :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     font-size: 14px;
-    color: #222;
-    padding: 0;
-    background-color: #f8f8f8;
-    border-radius: 5px;
 }
 
 .highlight .hll { background-color: #ffffcc }

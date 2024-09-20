@@ -5,7 +5,7 @@ title: List of Personal Notes
 
 This is a collection of personal notes taken while reading books on programming, algorithms and other topics, practicing coding, and completing projects.
 
-The posts here are migrated from the original blog website [FVSparkles](http://139.196.30.181:8080/) (the server will be shut down soon). The migration is still IN PROGRESS.
+The posts here are migrated from the original blog website [FVSparkles](http://139.196.30.181:8080/) (the server will be shut down soon). The migration is still in progress.
 
 ## Programming Languages
 
@@ -14,6 +14,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 2: Variables and Basic Types](/posts/cpp-primer/ch2-variables-and-basic-types)
   - [Chapter 3: Strings, Vectors, and Arrays](/posts/cpp-primer/ch3-strings-vectors-arrays)
   - [Chapter 4: Expressions](/posts/cpp-primer/ch4-expressions)
+  - [Chapter 5: Statements](/posts/cpp-primer/ch5-statements)
   - More to be added...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
   - [Chapter 1: The Python Data Model](/posts/fluent-python/ch(1))
