@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CTCI Chapter 17 Exercise Notes
+title: Cracking the Coding Interview Chapter 17 Hard
 date: 2024/9/19
 ---
 
@@ -520,3 +520,4 @@ public:
     }
 };
 ```
+

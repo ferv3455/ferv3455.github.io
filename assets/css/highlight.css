@@ -8,12 +8,19 @@
 
 code {
     font-family: 'Roboto Mono', monospace;
+}
+
+:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) > code {
     font-size: 14px;
+    color: #222;
+    padding: 0;
+    background-color: #f8f8f8;
+    border-radius: 5px;
 }
 
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #008000 } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
+/* .highlight .err { border: 1px solid #FF0000 } Error */
 .highlight .k { color: #0000ff } /* Keyword */
 .highlight .cm { color: #008000 } /* Comment.Multiline */
 .highlight .cp { color: #0000ff } /* Comment.Preproc */
