@@ -6,15 +6,15 @@ layout: homepage
 
 ## About Me
 
-I am a first-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN). I expect to finish my coursework and begin my career in December, 2025.
+**I am a first-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN).** I expect to finish my coursework and begin my career in December, 2025.
 
 As an international student from China, I finished my school years in my hometown Shanghai and my bachelor's degree at Tsinghua University in Beijing.
 
 ## About the Webpage
 
-This webpage acts as an introduction to my academic and professional experience as well as an archive of previously published personal blogs. The content of these blogs are technical notes from extensive reading and projects, involving programming languages, data structures and algorithms, computer systems, etc. They are written in Chinese/English.
+This website acts as an introduction to my academic and professional experience as well as an archive of previously published personal blogs. The content of these blogs are technical notes from extensive reading and projects, involving programming languages, data structures and algorithms, computer systems, etc. They are written in Chinese/English.
 
-To have a look at the notes, please visit [here](/postlist).
+**To have a look at my notes, please visit [here](/postlist).** They record my journey of learning programming languages and algorithms after class, and I hope whoever reads them can benefit from these notes.
 
 
 ## Education

@@ -16,7 +16,8 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 4: Expressions](/posts/cpp-primer/ch4-expressions)
   - [Chapter 5: Statements](/posts/cpp-primer/ch5-statements)
   - [Chapter 6: Functions](/posts/cpp-primer/ch6-functions)
-  - More to be added...
+  - [Chapter 7: Classes](/posts/cpp-primer/ch7-classes)
+  - Still reading the book...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
   - [Chapter 1: The Python Data Model](/posts/fluent-python/ch(1))
   - [Chapter 2: An Array of Sequences](/posts/fluent-python/ch(2))
@@ -40,11 +41,23 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 20: Attribute Descriptors](/posts/fluent-python/ch(20))
   - [Chapter 21: Class Metaprogramming](/posts/fluent-python/ch(21))
   - [Extra: doctest (Written in English)](/posts/fluent-python/doctest)
+- *__Effective Python: 90 Specific Ways to Write Better Python__*, Brett Slatkin **(Written in Chinese)**
+  - [Chapter 1: Pythonic Thinking](/posts/effective-python/ch1-pythonic-thinking)
+  - [Chapter 2: Lists and Dictionaries](/posts/effective-python/ch2-lists-and-dictionaries)
+  - [Chapter 3: Functions](/posts/effective-python/ch3-functions)
+  - [Chapter 4: Comprehensions and Generators](/posts/effective-python/ch4-comprehensions-and-generators)
+  - [Chapter 5: Classes and Interfaces](/posts/effective-python/ch5-classes-and-interfaces)
+  <!-- - [Chapter 6: Metaclasses and Attributes](/posts/effective-python/ch6-metaclasses-and-attributes)
+  - [Chapter 7: Concurrency and Parallelism](/posts/effective-python/ch7-concurrency-and-parallelism)
+  - [Chapter 8: Robustness and Performance](/posts/effective-python/ch8-robustness-and-performance)
+  - [Chapter 9: Testing and Debugging](/posts/effective-python/ch9-testing-and-debugging) -->
+  - [Chapter 10: Collaboration](/posts/effective-python/ch10-collaboration)
+  - Still reading the book...
 - *__Learning Go: An Idiomatic Approach to Real-World Go Programming__*, Jon Bodner **(Written in Chinese)**
   - [Chapter 1-3: Fundamentals and Built-in Types](/posts/learning-go/ch1-3-fundamentals-and-built-in-types)
   - [Chapter 4-6: Control Flow and Pointers](/posts/learning-go/ch4-6-control-flow-and-pointers)
   - [Chapter 7-8: Types and Errors](/posts/learning-go/ch7-8-types-and-errors)
-  - More to be added...
+  - Still reading the book...
 
 ## Data Structures and Algorithms
 
@@ -59,7 +72,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 10: Sorting and Searching](/posts/cracking-the-coding-interview/ch10-sorting-and-searching)
   - [Chapter 16: Moderate](/posts/cracking-the-coding-interview/ch16-moderate)
   - [Chapter 17: Hard](/posts/cracking-the-coding-interview/ch17-hard)
-  - More to be added...
+  - Still reading the book...
 - *__Random Notes of Coding__*, Online Resource **(Written in Chinese)**
   - [Problem List](/posts/random-notes-of-coding/list)
   - [Chapter 1: Arrays](/posts/random-notes-of-coding/ch(1))
