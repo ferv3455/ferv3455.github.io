@@ -34,8 +34,9 @@ date: 2024/9/19
 ## Type Conversions
 
 - **For operands of differing types, integral promotions happen first (cast to a larger type), and then the signed operand is converted to unsigned, or the integral operand is cast to a floating-point type.** Since type sizes are different across machines, the results can be machine dependent.
+- **Integral types will always be promoted to `int` or a larger integral type.**
 - Class types can define type conversions that the compiler will apply automatically (e.g. `while (cin >> s) ...`).
-- Named casts: `static_cast` (**allow potential loss of precision, commonly used**), `dynamic_cast` (covered in Chapter 19), `const_cast` (cast away `const`), `reinterpret_cast` (low-level reinterpretation of the bit pattern without warnings). Old-style casts does the same conversion as one of these.
+- Named casts: `static_cast` (**allow potential loss of precision, commonly used**), `dynamic_cast` (covered in Chapter 19), `const_cast` (cast away/add `const`), `reinterpret_cast` (low-level reinterpretation of the bit pattern without warnings). Old-style casts does the same conversion as one of these.
 - `static_cast` can also be used on casting `char *` to `string` (create a new one).
 
 ## Operator Precedence Table

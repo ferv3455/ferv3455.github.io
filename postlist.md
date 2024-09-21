@@ -15,6 +15,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 3: Strings, Vectors, and Arrays](/posts/cpp-primer/ch3-strings-vectors-arrays)
   - [Chapter 4: Expressions](/posts/cpp-primer/ch4-expressions)
   - [Chapter 5: Statements](/posts/cpp-primer/ch5-statements)
+  - [Chapter 6: Functions](/posts/cpp-primer/ch6-functions)
   - More to be added...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
   - [Chapter 1: The Python Data Model](/posts/fluent-python/ch(1))

@@ -30,7 +30,6 @@ date: 2024/9/20
 - A range `for` is defined based on the traditional `for`. **On each iteration the control variable is defined and initialized by the next value, and then the statement is executed:**
 
 ```cpp
-
 for (declaration : expression) statement
 // Is equivalent to
 for (auto beg = expression.begin(), end = expression.end(); beg != end; ++beg)
