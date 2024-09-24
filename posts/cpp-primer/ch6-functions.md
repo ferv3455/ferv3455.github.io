@@ -63,8 +63,9 @@ void f2()
 }
 ```
 
-- **`constexpr` function: the `return` type and the type of each parameter must be a literal type, and the function body must contain exactly one `return` statement. Compilers will expand the function immediately (replace with a value inline).**
+- **`constexpr` function: the `return` type and the type of each parameter must be a literal type, and the function body must contain exactly only one `return` statement. Compilers will expand the function immediately (replace with a value inline).**
 	- A `constexpr` function is permitted to return a non-constant value (when non-constant expression is passed in as arguments).
+	- **The aim of introducing `constexpr` functions and types is to expand at compilation.**
 
 ```cpp
 constexpr int new_sz() { return 42; }

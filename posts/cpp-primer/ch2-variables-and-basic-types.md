@@ -22,7 +22,7 @@ date: 2024/9/19
 ## Variables
 
 - Four ways of initialization: `= 0`(copy initialization), `(0)` (direct initialization), ` = {0}`, `{0}` (list initialization). **Loss of information from conversion is not allowed in list initialization.**
-- Variables of built-in type defined inside a function are uninitialized by default.
+- Variables of built-in type defined inside a function/class are uninitialized by default.
 - `extern` provides a declaration only. An `extern` that has an initializer is a definition.
 
 ## Compound Types
