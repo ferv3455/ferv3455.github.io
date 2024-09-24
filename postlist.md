@@ -17,6 +17,8 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 5: Statements](/posts/cpp-primer/ch5-statements)
   - [Chapter 6: Functions](/posts/cpp-primer/ch6-functions)
   - [Chapter 7: Classes](/posts/cpp-primer/ch7-classes)
+  - [Chapter 8: The IO Library](/posts/cpp-primer/ch8-the-io-library)
+  - [Chapter 9: Sequential Containers](/posts/cpp-primer/ch9-sequential-containers)
   - Still reading the book...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
   - [Chapter 1: The Python Data Model](/posts/fluent-python/ch(1))
