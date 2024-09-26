@@ -22,6 +22,7 @@ date: 2024/9/21
 - **Array parameters can also be defined as a reference: `int (&arr)[10]`. The dimension is part of the type, and it can only accept arrays of the given size.**
 - Taking a varying number of arguments: `initializer_list`, `...`, or variadic template.
 	- `initializer_list` behaves as a `vector` of `const` values. **The type needs to be specified beforehand.** When the function is called, the sequence of values needs to be wrapped in curly braces.
+	- **`initializer_list` can be automatically unpacked as parameters for another function.**
 	- **Ellipsis parameters are used to be compatible for C.** It appears as the last element in a parameter list. Arguments can be extracted with C library `varargs`.
 
 ## Return Types and the `return` Statement
