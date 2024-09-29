@@ -40,7 +40,7 @@ date: 2024/9/21
 - Top-level `const` parameters are indistinguishable from ones without a top-level `const`.
 - **Low-level `const` can be used in overloading. The compiler will prefer the non`const` versions when we pass a non`const` object or pointer to an overloaded function.**
 - If more than one function matches the call, it is an ambiguous call.
-- **Local variables will hide uses of all declarations with that name in an outer scope. Functions with the same name will not overload.**
+- **Local variables will hide uses of all declarations with that name in an outer scope. Functions with the same name will not overload. This is because name lookup happens before type checking.**
 
 ## Features for Specialized Uses
 
