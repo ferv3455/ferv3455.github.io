@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C++ Primer (5th Edition) Chapter 15 Object-Oriented Programming
-date: 2024/9/28
+date: 2024/10/1
 ---
 
 # Chapter 15 Object-Oriented Programming
@@ -57,9 +57,38 @@ date: 2024/9/28
 
 ## Constructors and Copy Control
 
-- **Classes used as base classes almost always define a virtual destructor (can be default). Derived classes will have virtual destructors without explicitly defining them.** In this way, deleting a base class pointer will trigger the destructor of the dynamic type. However, this means that the move operation will not be synthesized for these classes.
-- In a (synthesized) default destructor, apart from destroying its own members, its direct base will also be destroyed.
-- ***This part will be filled after reading Chapter 13.***
+- **A base class almost always needs a virtual destructor. However, the compiler will not synthesize move operations for the class in this way.**
+- All that matters for synthesized copy-control member functions is that the base-class member is accessible and not deleted. **The synthesized construction/destruction process will automatically go up to the root of the hierarchy.**
+- Derived copy-control members may be deleted if:
+    - The corresponding member in the base class is deleted or inaccessible.
+    - If the base class has an inaccessible destructor, the default and copy constructors in derived classes are deleted.
+    - Move operations in the derived will be deleted if we use `= default` but it is impossible to synthesize one (the base class part cannot be moved).
+- **In order to support copy/move operations in derived classes, base classes usually define all copy-control members explicitly (destructor -> move -> copy).**
+
+```cpp
+class Quote {
+public:
+    Quote() = default;              // memberwise default initialize
+    Quote(const Quote&) = default;  // memberwise copy
+    Quote(Quote&&) = default;       // memberwise copy
+    Quote& operator=(const Quote&) = default;  // copy assign
+    Quote& operator=(Quote&&) = default;       // move assign
+    virtual ~Quote() = default;
+    // other members as before
+};
+```
+
+- Suggested definition of derived copy-control members:
+    - Copy/Move constructor: the parameter can be directly used as the argument for the base class constructor in the initializer list (dynamic type).
+    - Assignment operator: call the base operator with scope: `Base::operator=(rhs)`, and then assign the derived members.
+    - Destructor: only need to destroy derived resources.
+- **While an object is being constructed it is treated as if it has the same class as the constructor; calls to virtual functions will be bound as if the object has the same type as the constructor itself.** Similarly, for destructors. This is because the object is incomplete at that time, without derived members. Executing virtual member functions defined in derived classes may lead to errors.
+- **For user-defined constructors, the derived class may inherit them from its direct base: `using Base::Base`. When applied to a constructor, `using` causes the compiler to generate code of a derived constructor for each constructor in the base.**
+    - Derived members will be default initialized.
+    - The access level of inherited constructors are the same as in the base class.
+    - `explicit` or `constexpr` cannot be specified (remains the same as in the base class).
+    - If a base-class constructor has default arguments, they are not inherited. **The derived class gets multiple inherited constructors in which each parameter with a default argument is successively omitted.**
+    - The derived class can define some constructors with the same parameters as constructors in the base to hide them.
 
 ## Containers and Inheritance
 
