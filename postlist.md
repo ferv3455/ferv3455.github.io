@@ -77,6 +77,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 6: Math and Logic Puzzles](/posts/cracking-the-coding-interview/ch6-math-and-logic-puzzles)
   - [Chapter 8: Recursion and Dynamic Programming](/posts/cracking-the-coding-interview/ch8-recursion-and-dynamic-programming)
   - [Chapter 10: Sorting and Searching](/posts/cracking-the-coding-interview/ch10-sorting-and-searching)
+  - [Chapter 12: C and C++](/posts/cracking-the-coding-interview/ch12-c-cpp)
   - [Chapter 16: Moderate](/posts/cracking-the-coding-interview/ch16-moderate)
   - [Chapter 17: Hard](/posts/cracking-the-coding-interview/ch17-hard)
   - Still reading the book...
