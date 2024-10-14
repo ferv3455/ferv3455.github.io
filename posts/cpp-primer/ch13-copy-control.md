@@ -81,7 +81,7 @@ int &&rr2 = i * 42;       // ok: bind rr2 to the result of the multiplication
 ```
 
 - `std::move` returns a rvalue reference to its given object. **After the call, we cannot use the value of the moved-from object.**
-- Move constructors has an rvalue reference as its parameter. After moving, the original object must no longer point to moved resources. The rvalue reference can be edited.
+- **Move constructors has an rvalue reference as its parameter.** After moving, the original object must no longer point to moved resources. The rvalue reference can be edited.
 - `noexcept` can be used to promise that a function does not throw any exceptions. It appears between the parameter list and `:`. It should be added in both declaration and definition.
 - **Move constructors should be indicated as `noexcept`**: library functions like `push_back` can only use a move constructor if it won't throw an exception (or it will not be able to recover). The same applies to move-assignment operators.
 - **Moved-from objects must be left destructible.**
@@ -129,6 +129,16 @@ vec.push_back("done");  // calls push_back(string&&)
 ## An Example of Constructors and Assignment Operators
 
 ```cpp
+class A {
+public:
+	A(int i) : m(i) {}
+	A(const A &a) : m(a.m) {}
+	A(A &&a) noexcept : m(std::move(a.m)) {}
+	A &operator=(const A &a) {}
+	A &operator=(A &&a) noexcept {}
+	int m;
+}
+
 A func() {
     return A(1);
 }

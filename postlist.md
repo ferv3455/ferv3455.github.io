@@ -23,6 +23,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 11: Associative Containers](/posts/cpp-primer/ch11-associative-containers)
   - [Chapter 12: Dynamic Memory](/posts/cpp-primer/ch12-dynamic-memory)
   - [Chapter 13: Copy Control](/posts/cpp-primer/ch13-copy-control)
+  - [Chapter 14: Overloaded Operations and Conversions](/posts/cpp-primer/ch14-overloaded-operations-and-conversions)
   - [Chapter 15: Object-Oriented Programming](/posts/cpp-primer/ch15-object-oriented-programming)
   - Still reading the book...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
