@@ -14,7 +14,7 @@ date: 2024/10/14
 - `+`, `-`, `*`, `&` can serve as both unary and binary operators. Both can be overloaded.
 - Operators that can or cannot be overloaded:
 
-<img src="attachments/Pasted image 20241013144426.png" >
+<img src="./attachments/Pasted image 20241013144426.png" >
 
 - An overloaded operator function can be called directly: `operator+(data1, data2)`, `data1.operator+=(data2)`.
 - The overloaded versions do not preserve operand-evaluation guarantees: **no short-circuit evaluation properties in `&&` and `||`**. These operands with built-in meanings should not be overloaded.
@@ -77,14 +77,14 @@ date: 2024/10/14
 	- They can be used to override the default operator in algorithms.
 	- The library function objects work for pointer comparation (**normally, two pointers cannot be compared**).
 
-<img src="attachments/Pasted image 20241013200919.png" >
+<img src="./attachments/Pasted image 20241013200919.png" >
 
 - A callable object has a type specific to the class. However, two callable objects with different types may share the same **call signature: return type and argument types. A call signature corresponds to a function type**.
 - **`funtion` types (defined in `functional`) can be used to store any callable object with a common call signature.** The template accepts the corresponding function type to create the function class type.
 	- The `function` type overloads the call operator: it takes its own arguments and passes them to the stored callable object.
 	- Assigning an overloaded function to a `function` object will cause ambiguity. We can use an intermediate function pointer or a lambda function to resolve it.
 
-<img src="attachments/Pasted image 20241013231613.png" >
+<img src="./attachments/Pasted image 20241013231613.png" >
 
 ## Overloading, Conversions and Operators
 
