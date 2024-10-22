@@ -41,12 +41,28 @@ layout: homepage
 
 ---
 
+## Log Data Reduction Algorithms Based on Provenance Graphs
+<p>
+    <div>
+        School of Software, Tsinghua University
+        <br />
+        Advisor: Hai Wan, Associate Professor
+        <div style="text-align: right;">November 2023 - June 2024</div>
+    </div>
+</p>
+
+- Designed a complete framework for the evaluation of log data reduction algorithms based on provenance graphs in Python
+- Implemented eight log data reduction algorithms proposed in the past decade based on papers and open-source projects
+- Carried out experiments on real-world log data and compared the performance of these algorithms exhaustively
+
+---
+
 ## Log Data Encoding for Efficient Storage in Apache IoTDB
 <p>
     <div>
         School of Software, Tsinghua University
         <br />
-        Advisor: Shaoxu Song, Associated Professor
+        Advisor: Shaoxu Song, Associate Professor
         <div style="text-align: right;">October 2022 - May 2023</div>
     </div>
 </p>
@@ -64,7 +80,7 @@ layout: homepage
     <div>
         School of Software, Tsinghua University
         <br />
-        Advisor: Hai Wang, Associate Research Fellow
+        Advisor: Hai Wan, Associate Professor
         <div style="text-align: right;">October 2023 - December 2023</div>
     </div>
 </p>

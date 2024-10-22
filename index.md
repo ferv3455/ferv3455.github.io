@@ -49,12 +49,15 @@ This website acts as an introduction to my academic and professional experience 
 - **Bi-level Optimization for Inductive Transfer Learning** <small>(August 2023 - July 2024)</small>
   - Computational Biology Department, Carnegie Mellon University
   - Advisor: Min Xu, Associated Professor
+- **Log Data Reduction Algorithms Based on Provenance Graphs** <small>(November 2023 - June 2024)</small>
+  - School of Software, Tsinghua University
+  - Advisor: Hai Wan, Associate Professor
 - **Log Data Encoding for Efficient Storage in Apache IoTDB** <small>(October 2022 - May 2023)</small>
   - School of Software, Tsinghua University
-  - Advisor: Shaoxu Song, Associated Professor
+  - Advisor: Shaoxu Song, Associate Professor
 - **Developing a Network Security Data Management System** <small>(October 2023 - December 2023)</small>
   - School of Software, Tsinghua University
-  - Advisor: Hai Wang, Associate Research Fellow
+  - Advisor: Hai Wan, Associate Professor
 - **Visual Perception and Understanding of Three-dimensional Scenes: Action Recognition** <small>(October 2021 - September 2022)</small>
   - School of Software, Tsinghua University
   - Advisor: Yue Gao, Associate Professor
@@ -95,3 +98,8 @@ This website acts as an introduction to my academic and professional experience 
   - Group project for the course <em>Introduction to Mobile Application Development</em>
   - Completed the entire backend system and the major functions in the frontend application, including browsing post lists, creating posts and the message system
   - Written in Java (frontend), Python (backend)
+- **Distributed Bitcoin Miner** <small>(2024 Fall)</small>
+  - Group project for the course <em>Distributed Systems</em>
+  - Developed a distributed concurrent Live Sequence Protocol (LSP) module with network programming from scratch, which enables the reliable transmission of packets between clients and server
+  - Implemented a distributed bitcoin miner based on the LSP module, which supports concurrent mining on distributed miner machines
+  - Written in Go
