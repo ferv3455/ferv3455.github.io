@@ -5,7 +5,7 @@ title: List of Personal Notes
 
 This is a collection of personal notes taken while reading books on programming, algorithms and other topics, practicing coding, and completing projects.
 
-The posts here are migrated from the original blog website [FVSparkles](http://139.196.30.181:8080/) (the server will be shut down soon). The migration is still in progress.
+The posts here are migrated from the original blog website [FVSparkles](http://139.196.30.181:8080/) (the server has been shut down since November 10, 2024). The migration is still in progress.
 
 ## Programming Languages
 
@@ -102,8 +102,10 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 16: Dynamic Programming (4)](/posts/random-notes-of-coding/ch(16))
   - [Chapter 17: Graphs (1)](/posts/random-notes-of-coding/ch(17))
   - [Chapter 18: Graphs (2)](/posts/random-notes-of-coding/ch(18))
+  - [Chapter 19: Graphs (3)](/posts/random-notes-of-coding/ch(19))
   - [Extra: HackerRank Exercises](/posts/random-notes-of-coding/hackerrank-exercises)
   - [Summary](/posts/random-notes-of-coding/summary)
+  - [Algorithm Summary](/posts/random-notes-of-coding/algo-summary)
 
 ## Miscellaneous Notes for Reference
 
