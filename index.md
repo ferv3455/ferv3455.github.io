@@ -103,3 +103,7 @@ This website acts as an introduction to my academic and professional experience 
   - Developed a distributed concurrent Live Sequence Protocol (LSP) module with network programming from scratch, which enables the reliable transmission of packets between clients and server
   - Implemented a distributed bitcoin miner based on the LSP module, which supports concurrent mining on distributed miner machines
   - Written in Go
+- **Embedded Operating System Development** <small>(2024 Fall)</small>
+  - Group project for the course <em>Introduction to Embedded Systems</em>
+  - Designed low-level functionalities of an operating system in the ARM embedded architecture from scratch, including memory layout, device drivers, interrupts and system calls, user-space thread scheduling, synchronization, etc.
+  - Written in Arm Assembly Language and C
