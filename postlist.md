@@ -25,6 +25,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
   - [Chapter 13: Copy Control](/posts/cpp-primer/ch13-copy-control)
   - [Chapter 14: Overloaded Operations and Conversions](/posts/cpp-primer/ch14-overloaded-operations-and-conversions)
   - [Chapter 15: Object-Oriented Programming](/posts/cpp-primer/ch15-object-oriented-programming)
+  - [Chapter 16: Templates and Generic Programming](/posts/cpp-primer/ch16-templates-and-generic-programming)
   - Still reading the book...
 - *__Fluent Python: Clear, Concise, and Effective Programming__*, Luciano Ramalho **(Written in Chinese)**
   - [Chapter 1: The Python Data Model](/posts/fluent-python/ch(1))
