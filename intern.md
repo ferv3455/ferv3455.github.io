@@ -4,6 +4,24 @@ layout: homepage
 
 # Internship Experiences
 
+## Tier Criteria Management System
+<p>
+    <div>
+        Privacy and Security - Data Lifecycle Management - AI Governance, TikTok Inc.
+        <br />
+        Supervisor: Pingchun Chiang, Software Engineer
+        <div style="text-align: right;">May 2025 - August 2025</div>
+    </div>
+</p>
+
+- Designed and built a full-stack rule management system from scratch, streamlining management of 40+ evolving rules
+- Introduced version control and dry-run evaluation using 700+ models, enhancing update auditability and reliability
+- Backfilled error data and launched the system to production, enabling real-time downstream consumption of updated rules
+- Authored comprehensive design documentation, developer guides and user manuals to ensure long-term maintainability
+- Implemented multiple compliance-related tickets to collect AI model information required under current regulations
+
+---
+
 ## Click Farming Detection based on Comment Content and Language Model
 <p>
     <div>

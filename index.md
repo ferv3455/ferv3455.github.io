@@ -6,7 +6,7 @@ layout: homepage
 
 ## About Me
 
-**I am a first-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN).** I expect to finish my coursework and begin my career in December, 2025.
+**I am a second-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN).** I expect to finish my coursework in December 2025 and kick off my career in 2026.
 
 As an international student from China, I finished my school years in my hometown Shanghai and my bachelor's degree at Tsinghua University in Beijing.
 
@@ -19,16 +19,19 @@ This website acts as an introduction to my academic and professional experience 
 
 ## Education
 
-- **Carnegie Mellon University**, Master of Science in Information Networking <small>(August 2024 – Present)</small>
-  - Courses: Introduction to Computer Systems, Networking and the Internet, Distributed Systems
-- **Tsinghua University**, Bachelor’s in Software Engineering (GPA: 3.90/4.00) <small>(August 2019 – July 2024)</small>
-  - Courses: Computer Organization and Network, Software Engineering, Database Systems, Artificial Intelligence
+- **Carnegie Mellon University**, Master of Science in Information Networking (GPA: 4.00/4.00) <small>(August 2024 – December 2025)</small>
+  - Courses: Cloud Computing, Distributed Systems, Database Systems, Algorithms Design and Analysis
+- **Tsinghua University**, Bachelor's in Software Engineering (GPA: 3.90/4.00) <small>(August 2019 – July 2024)</small>
+  - Courses: Computer Architecture, Software Engineering, Data Structures and Algorithms, Artificial Intelligence
   - Honors: Scholarship for Academic Excellence (four times in 2020, 2021, 2022, 2023)
 
 
 
 ## Internship Experiences <small>[[Show Details]](/intern)</small>
 
+- **Tier Criteria Management System** <small>(May 2025 - August 2025)</small>
+  - Privacy and Security - Data Lifecycle Management - AI Governance, TikTok Inc.
+  - Supervisor: Pingchun Chiang, Software Engineer
 - **Click Farming Detection based on Comment Content and Language Model** <small>(June 2023 - July 2023)</small>
   - Risk Control R&D Department, Beijing Jingdong Century Trading Co., Ltd.
   - Supervisor: Nan Lu, Algorithm Application Engineer
@@ -107,3 +110,7 @@ This website acts as an introduction to my academic and professional experience 
   - Group project for the course <em>Introduction to Embedded Systems</em>
   - Designed low-level functionalities of an operating system in the ARM embedded architecture from scratch, including memory layout, device drivers, interrupts and system calls, user-space thread scheduling, synchronization, etc.
   - Written in Arm Assembly Language and C
+- **BusTub - Relational Database Management System** <small>(2025 Spring)</small>
+  - Individual project for the course <em>Introduction to Database Systems</em>
+  - Implemented components of a relational database management system, including buffer pool manager, efficient database indexes (B+ Tree), query execution/optimization and concurrency control mechanisms.
+  - Written in C++17
