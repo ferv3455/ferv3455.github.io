@@ -4,32 +4,74 @@ title: C++ Primer (5th Edition) Chapter 1 Getting Started
 date: 2024/9/19
 ---
 
-# 第 1 章 开始
+# Chapter 1 Getting Started
 
-## 1.1 编写一个简单的 C++程序
+## 1.1 Writing a Simple C++ Program
 
-- `main` 函数的返回值用来指示状态，`0` 表示成功，否则用来指出错误类型，由系统定义；
-- 在 Windows 中使用命令 `echo %ERRORLEVEL%` 获取程序运行状态，在 UNIX 系统中使用 `echo $`。
+- A function definition has four elements: return type, function name, parameter list, and function body.
+- `main` is required to have return type `int`, which is a status indicator (0 for success, nonzero values for error types defined by the system, e.g. -1).
+  - The value returned from `main` is accessed in a system-dependent manner: `echo %ERRORLEVEL%` (Windows) or `echo $?` (UNIX).
+  - Return value -1 will be shown as 255 (unsigned char representation).
 
-## 1.2 初识输入输出
+## 1.2 A First Look at Input/Output
 
-- `iostream` 标准库中定义的 IO 对象：`cin`(`istream`)、`cout, cerr, clog`(`ostream`)；
-- `std:: endl` 为**操纵符**（manipulator）特殊值，将与设备关联的**缓冲区**内容刷到设备中（在调试过程中应当保证一直刷新流，避免调试信息留在缓冲区）；
-- **作用域运算符**`:: ` 用来显示指明命名空间。
+- C++ relies on the standard library to provide IO, mostly from `iostream`.
+  - Two fundamental **stream** types: `istream` for input and `ostream` for output.
+  - Four IO objects: `cin`, `cout`, `cerr`, and `clog`. The system associates these objects with the window in which the program is executed.
+- `#include` directive must be written on a single line and outside any function. The name inside the angle brackets refers to a header.
+- The `<<` operator takes two operands - `ostream` and the value to be output - and returns the `ostream` object. In this way we can chain multiple output operations together. The `>>` operator is used for input and works similarly to `<<`.
+- `std::endl` is a special value called a **manipulator**, which ends a line and flushes the buffer associated with the device.
+  - During debugging, it should be ensured that the stream is always flushed to avoid leaving debugging information in the buffer.
+- The **scope operator** `::` is used to explicitly specify the namespace. All names defined by the standard library are in the `std` namespace.
 
-## 1.3 注释简介
+## 1.3 A Word about Comments
 
-- **注释界定符**跨越多行时，可以使用每行开头的星号指出注释范围；
-- 注释界定符不能嵌套，可以使用单行注释；
-- 双引号规则：若双引号在注释界定符内部（先读取到左界定符），则双引号为注释；若界定符在双引号内部，则该界定符视为字符串（可参考练习 1.8）。
+- ***Warning: an incorrect comment is worse than no comment at all!***
+- Two kinds of comments in C++: single-line (`//`, ends with a newline) and multi-line (delimiters `/*` and `*/`).
+  - For multi-line comments, it is a good idea to begin each line with a `*` to indicate the comment's extent.
+  - One comment pair cannot appear inside another. The compiler error messages may be confusing.
+  - **The best way to comment a block of code during debugging is to insert single-line comments at the beginning of each line.**
 
-## 1.4 控制流
+```cpp
+#include <iostream> 
+/*
+ *  Simple main function:
+ *  Read two numbers and write their sum 
+ */
+int main()
+{
+    // prompt user to enter two numbers
+    std::cout << "Enter two numbers:" << std::endl; 
+    int v1 = 0, v2 = 0;   // variables to hold the input we read 
+    std::cin >> v1 >> v2; // read input
+    std::cout << "The sum of " << v1 << " and " << v2
+              << " is " << v1 + v2 << std::endl;
+    return 0;
+}
+```
 
-- `for` 和 `while` 分别适用于循环次数确定/不确定的情况；
-- `while (std:: cin >> value)` 可以读入数量不定的数据（检测的表达式是读取后的 `cin`）：
-    - 读取内容的末尾应为**文件结束符**EOF，此时 `istream` 对象会被置为无效，条件为假。Windows 系统为 Ctrl+Z，Unix 系统为 Ctrl+D；
-    - 此外，读入**无效输入**时，与变量类型不符，也会置为无效（注意：如要求输入整数，输入小数 1.2 时，会成功读入字符 `1`，进入循环体，之后读取下一个字符 `.` 才为非法输入）。
+- **The compiler reads from left to right to decide whether a delimiter is part of a string.** When a double-quote appears first, the delimiter belongs to the string. When a delimiter appears first, the double-quote belongs to the comment.
 
-## 1.5 类简介
+```cpp
+std::cout << "/*";                // legal: /*
+std::cout << "*/";                // legal: */
+// std::cout << /* "*/" */;       // illegal
+std::cout << /* "*/" /* "/*" */;  // legal: /*
+```
 
-- 使用点运算符 `.` 和调用运算符 `()` 调用成员函数。
+
+## 1.4 Flow of Control
+
+- `for (init-statement; condition; expression) statement` and `while (condition) statement` are used for loops with definite and indefinite iteration.
+  - A block is a sequence of zero or more statements enclosed by curly braces. It can be used as a statement.
+- `if` is used for conditional execution.
+- Read until end-of-file: `while (std::cin >> value)`.
+  - When we use an `istream` as a condition, the state of the stream will be tested. It becomes invalid when the end-of-file is reached or when an input operation fails (incorrect format).
+    - Incorrect format: the input will be processed with best effort. For example, if the input is `1.2` for integers, the stream will read `1` and leave `.` in the input buffer.
+  - Entering EOF from keyboard: Ctrl+Z (Windows) / Ctrl+D (UNIX) + Return/Enter.
+- Compilation errors: syntax errors, type errors, declaration errors. Correct errors in the sequence they are reported: a single error can have a cascading effect. Recompile after each fix.
+
+## 1.5 Introducing Classes
+
+- Every class defines a type. The type name is the same as the class name. The author of the class defines all the actions that can be performed on objects of that class.
+- Use the dot operator and the call operator to access and call a member function.
