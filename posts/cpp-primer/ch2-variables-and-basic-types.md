@@ -1,66 +1,66 @@
 ---
 layout: post
 title: C++ Primer (5th Edition) Chapter 2 Variables and Basic Types
-date: 2024/9/19
+date: 2025/8/31
 ---
 
-# Chapter 2
+# Chapter 2 Variables and Basic Types
 
 ## 2.1 Primitive Built-in Types
 
 ### Arithmetic Types
 
 - Machine-level representation:
-    - The smallest chunk of addressable memory is a byte.
-    - The basic unit of storage is a word.
+  - The smallest chunk of addressable memory is a byte.
+  - The basic unit of storage is a word.
 - The size (largest value) of arithmetic types varies across machines: compilers are allowed to use larger sizes than the minimum required.
 - Two categories of arithmetic types: integral and floating-point.
 - Character types:
-    - `char` is guaranteed to be big enough to hold numeric values corresponding to characters in the machine's basic character set.
-    - **`wchar_t`, `char16_t`, `char32_t` are used for extended character sets**: `wchar_t` is large enough for the machine's largest extended character set. `char16_t` and `char32_t` are for Unicode characters.
-    - There are three distinct basic character types: `char`, `signed char` and `unsigned char`. **`char` is not necessarily the same as `signed char`**, which may lead to problems across machines.
+  - `char` is guaranteed to be big enough to hold numeric values corresponding to characters in the machine's basic character set.
+  - **`wchar_t`, `char16_t`, `char32_t` are used for extended character sets**: `wchar_t` is large enough for the machine's largest extended character set. `char16_t` and `char32_t` are for Unicode characters.
+  - There are three distinct basic character types: `char`, `signed char` and `unsigned char`. **`char` is not necessarily the same as `signed char`**, which may lead to problems across machines.
 - Floating-point types:
-    - `float`, `double`, `long double` are represented in 1, 2 and 3/4 words.
-    - IEEE floating-point standard: sign + biased exponent (8/11 bits) + normalized mantisa (23/52 bits)
-        - Biased exponent ($2^{b-1}-1$): you could treat the bits of a floating-point number as a (signed) integer of the same size, and if you compared them that way, **the values will sort into the same order as the floating point numbers they represented**.
-        - Normalized mantisa: significant digits in scientific notation.
-        - Special values:
+  - `float`, `double`, `long double` are represented in 1, 2 and 3/4 words.
+  - IEEE floating-point standard: sign + biased exponent (8/11 bits) + normalized mantisa (23/52 bits)
+    - Biased exponent ($2^{b-1}-1$): you could treat the bits of a floating-point number as a (signed) integer of the same size, and if you compared them that way, **the values will sort into the same order as the floating point numbers they represented**.
+    - Normalized mantisa: significant digits in scientific notation.
+    - Special values:
 
-            <div align="center">
+        <div align="center">
 
-            | Exponent | Mantisa | Value |
-            |----------|---------|-------|
-            | 0        | 0       | 0     |
-            | 255      | 0       | Infinity |
-            | 0        | not 0   | Denormalised |
-            | 255      | not 0   | Not a number (NAN) |
+        | Exponent | Mantisa | Value |
+        |----------|---------|-------|
+        | 0        | 0       | 0     |
+        | 255      | 0       | Infinity |
+        | 0        | not 0   | Denormalised |
+        | 255      | not 0   | Not a number (NAN) |
 
-            </div>
+        </div>
 
 ### Type Conversions
 
 - Type conversion behavior:
-    - Assigning floating-point values to integral values will involve value truncation (not identical bit pattern). The value stored is the part before the decimal point (not in scientific notation).
-    - Precision may be lost when assigning an integral value to a floating-point type (not identical bit pattern).
-    - Assigning out-of-range values to unsigned types will involve modulo operation (the same bit pattern).
-    - **Assigning out-of-range values to signed types are undefined** (some processors generate a hardware exception on overflow).
-        - Avoid undefined/implementation-defined behavior (e.g. assuming the size of `int`).
+  - Assigning floating-point values to integral values will involve value truncation (not identical bit pattern). The value stored is the part before the decimal point (not in scientific notation).
+  - Precision may be lost when assigning an integral value to a floating-point type (not identical bit pattern).
+  - Assigning out-of-range values to unsigned types will involve modulo operation (the same bit pattern).
+  - **Assigning out-of-range values to signed types are undefined** (some processors generate a hardware exception on overflow).
+      - Avoid undefined/implementation-defined behavior (e.g. assuming the size of `int`).
 - Cases of type conversion:
-    - The compiler applies type conversions when another arithmetic type is expected.
-    - **Signed values are converted to unsigned values if we use both in an arithmetic expression** (not limited to addition/subtraction). Don't mix signed and unsigned types.
+  - The compiler applies type conversions when another arithmetic type is expected.
+  - **Signed values are converted to unsigned values if we use both in an arithmetic expression** (not limited to addition/subtraction). Don't mix signed and unsigned types.
 
 ### Literals
 
 - Integer literal:
-    - Decimal, octal (`0`), hexadecimal (`0x`/`0X`) notation.
-      - By default, **decimal literals are signed** whereas octal and hexadecimal literals can be either signed or unsigned (dependent not on the system but on the value).
-      - **The literals have the smallest type of `int`, `unsigned int`, `long`, `unsigned long`, `long long`, or `unsigned long long`** (unsigned types not applicable to decimals). There are no literals of `short`.
-      - The type can be explicitly specified with suffixes: `u`/`U` for unsigned, `l`/`L` for long, and `ll`/`LL` for long long. This is specified as the **minimum type** - `l` may be long long.
-    - **Technically speaking, the value of a decimal literal is never a negative number.**
+  - Decimal, octal (`0`), hexadecimal (`0x`/`0X`) notation.
+    - By default, **decimal literals are signed** whereas octal and hexadecimal literals can be either signed or unsigned (dependent not on the system but on the value).
+    - **The literals have the smallest type of `int`, `unsigned int`, `long`, `unsigned long`, `long long`, or `unsigned long long`** (unsigned types not applicable to decimals). There are no literals of `short`.
+    - The type can be explicitly specified with suffixes: `u`/`U` for unsigned, `l`/`L` for long, and `ll`/`LL` for long long. This is specified as the **minimum type** - `l` may be long long.
+  - **Technically speaking, the value of a decimal literal is never a negative number.**
 - Floating-point literal: decimal point (`.`) or an exponent specified using scientific notation (`E` or `e`).
   - The type can be explicitly specified with suffixes: `f`/`F` for float, and **`l`/`L` for long double**.
 - Character literal: enclosed in single quotes (`'`).
-- String literal: enclosed in double quotes (`"`). The type is **array of constant `char`s**, where a null character (`'\0'`) will be appended at the end.
+- String literal: enclosed in double quotes (`"`). The type is **array of constant `char`s (`const char []`)**, where a null character (`'\0'`) will be appended at the end.
   - The type can be explicitly specified with **prefixes**: `u` for `char16_t`, `U` for `char32_t`, `L` for `wchar_t`, `u8` for utf-8 `char` string literals.
   - **Two string literals adjacent to each other separated only by spaces, tabs, or newlines are concatenated into a single literal.**
   - Nonprintable and control characters can be represented using escape sequences. We can also use generalized escape sequences: `\x` followed by hexadecimal digits or `\` followed by octal digits of the character value. **`\` uses only the first three octal digits following it, but `\x` uses up all the hex digits.**

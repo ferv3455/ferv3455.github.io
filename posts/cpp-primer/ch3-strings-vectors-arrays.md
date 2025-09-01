@@ -6,33 +6,96 @@ date: 2024/9/19
 
 # Chapter 3 Strings, Vectors, and Arrays
 
-## Namespace `using` Declarations
+## 3.1 Namespace `using` Declarations
 
-- `using std::cin` can be used to resolve a single name.
-- Headers should not include `using` declarations.
+- A `using` declaration lets us use a name without qualifying the name with a namespace prefix: `using namespace::name`.
+  - It is still ok to explicitly use the namespace afterwards.
+  - Each `using` declaration can only introduce one name.
+- **Headers should not include `using` declarations**. If a header has a `using` declaration, than every program that includes that header gets the same `using` declaration, which may not be intended.
 
-## Library `string` Type
+## 3.2 Library `string` Type
 
-- Ways to initialize the string:
-	- **It can also be initialized or assigned with a null-terminated character array.**
+- The header `string` must be included; `string` is defined in the `std` namespace.
 
-<img src="./attachments/Pasted image 20240918151352.png" >
+### Defining and Initializing `string`s
 
+- String literals are arrays of `const char`s, so initializing from a string literal is actually initializing from a character array.
+
+```cpp
+// Empty string
+string s1;            // default initialization
+
+// From another string
+string s2(s1);		  // direct initialization
+string s2 = s1; 	  // copy initialization
+
+// From a string literal (basically the same as from a character array)
+string s3("value");   // direct initialization
+string s3 = "value";  // copy initialization
+
+// From a single character
+string s4(n, 'c');    // direct initialization only (two values)
+
+// From a character array (C-style string)
+char arr[] = "value";
+string s5(arr);       // direct initialization (null-terminated only)
+string s5 = arr;      // copy initialization (null-terminated only)
+string s5(arr, 3);    // direct initialization only (specific length)
+```
+
+### Operations on `string`s
+
+<img src="./attachments/table-3-2-string-operations.png" >
+
+- Strings are mutable in C++, unlike Python or Java.
 - Reading and writing a string:
-    - `getline` ignores the newline character at the end.
-    - `size` returns a `string::size_type` value (unsigned). **Use `auto`/`decltype(s.size())` to save its value instead of a `int`.**
-    - **String literals cannot be concatenated directly.**
-    - **Concatenation can be performed with one of the operands being a character array.**
+  - `getline(is, s)` reads the given stream up to and including the first newline, and stores it **not including the newline** in the string argument. Like the input operator, `getline` returns the `istream` argument.
+- Basic operations:
+  - `s.size()` returns a `string::size_type` value (an **unsigned type** big enough to hold any size). **Use `auto`/`decltype(s.size())` to define variables for storing the size.**
+    - **These companion types make it possible to use the library types in a machine-independent manner.**
+    - Be careful of expressions that mix signed and unsigned (size) data.
+  - Strings are compared using the same strategy as a case-sensitive dictionary.
+  - Adding two strings yields the concatenation of both strings.
+- Type conversion:
+  - The `string` library lets us (implicitly) convert both character literals and string literals to `string` objects. Therefore, we can use them where a `string` is expected. However, we need to be sure that **at least one operand to each `+` operator must be of `string` type** to trigger such type conversion.
 
-<img src="./attachments/Pasted image 20240918151401.png" >
+```cpp
+string s1 = "hello", s2 = "world";
+string s3 = s1 + ", " + s2 + '\n';
+string s4 = s1 + ", ";              // ok: adding a string and a literal
+string s5 = "hello" + ", ";         // error: no string operand
+string s6 = s1 + ", " + "world";    // ok: each + has a string operand (left to right)
+string s7 = "hello" + ", " + s2;    // error: can't add string literals
+```
 
-- Functions for characters (defined in `cctype`):
+### Dealing with the Characters in a `string`
 
-<img src="./attachments/Pasted image 20240918153209.png" >
+- Functions for handling the characteristics of a character (defined in `cctype`):
 
-- `string` is mutable in C++. By iterating with `for (auto &c : s)`, characters can be changed.
+<img src="./attachments/table-3-3-cctype-functions.png" >
 
-## Library `vector` Type
+- To access individual characters, we can use a subscript operator (`[]`, takes a `string::size_type` value) or an iterator (section 3.4).
+  - Indexing outside of the string's bounds will **not** be checked and is undefined behavior.
+- Range-based `for` iterates through the elements in a given sequence and performs some operation (read or change) on each value:
+
+```cpp
+for (declaration : expression) {
+    statement
+}
+
+// Note: for const strings, each element is a reference to const char (section 2.5)
+const string s = "xxx";
+for (auto &c : s) {  // Here c is of type const char &
+    // process character c
+}
+```
+
+
+
+
+
+
+## 3.3 Library `vector` Type
 
 - Instantiation: compiler creates classes or functions from templates.
 - Ways to initialize a vector:

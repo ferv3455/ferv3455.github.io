@@ -10,7 +10,7 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
 ## Programming Languages
 
 - *__C++ Primer (5th Edition)__*, Stanley B. Lippman, Barbara E. Moo, Josée Lajoie **(Written in English)**
-  - [Chapter 1: Getting Started (Written in Chinese)](/posts/cpp-primer/ch1-getting-started)
+  - [Chapter 1: Getting Started](/posts/cpp-primer/ch1-getting-started)
   - [Chapter 2: Variables and Basic Types](/posts/cpp-primer/ch2-variables-and-basic-types)
   - [Chapter 3: Strings, Vectors, and Arrays](/posts/cpp-primer/ch3-strings-vectors-arrays)
   - [Chapter 4: Expressions](/posts/cpp-primer/ch4-expressions)

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C++ Primer (5th Edition) Chapter 1 Getting Started
-date: 2024/9/19
+date: 2025/8/29
 ---
 
 # Chapter 1 Getting Started
