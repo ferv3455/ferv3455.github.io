@@ -7,6 +7,13 @@ This is a collection of personal notes taken while reading books on programming,
 
 The posts here are migrated from the original blog website [FVSparkles](http://139.196.30.181:8080/) (the server has been shut down since November 10, 2024). The migration is still in progress.
 
+## Computer Science Fundamentals
+
+- [Operating Systems](/posts/cs-fundamentals/operating-systems)
+- [Program Structure and Execution](/posts/cs-fundamentals/program-execution)
+- [Computer Network](/posts/cs-fundamentals/computer-network)
+- [Concurrent Programming](/posts/cs-fundamentals/concurrent-programming)
+
 ## Programming Languages
 
 - *__C++ Primer (5th Edition)__*, Stanley B. Lippman, Barbara E. Moo, Josée Lajoie **(Written in English)**

@@ -91,10 +91,6 @@ for (auto &c : s) {  // Here c is of type const char &
 ```
 
 
-
-
-
-
 ## 3.3 Library `vector` Type
 
 - Instantiation: compiler creates classes or functions from templates.
