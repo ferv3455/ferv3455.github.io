@@ -9,8 +9,8 @@ The posts here are migrated from the original blog website [FVSparkles](http://1
 
 ## Computer Science Fundamentals
 
+- [Program Structure and Execution](/posts/cs-fundamentals/program-execution) (not finished)
 - [Operating Systems](/posts/cs-fundamentals/operating-systems)
-- [Program Structure and Execution](/posts/cs-fundamentals/program-execution)
 - [Computer Network](/posts/cs-fundamentals/computer-network)
 - [Concurrent Programming](/posts/cs-fundamentals/concurrent-programming)
 
