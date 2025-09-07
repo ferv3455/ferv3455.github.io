@@ -254,7 +254,7 @@ int (&arrRef)[10] = arr;   // arrRef refers to an array of ten ints
 - Multidimensional arrays are arrays of arrays: `int ia[3][4]` is an array of size 3 whose elements are arrays of `int`s of size 4 (**read from inside out** - `int (ia[3])[4]`).
 - Initializing the elements:
   - We can initialize a multidimensional array using a bracketed list of initializers. **The nested braces are optional.**
-  - Elements may be left out of the initializer list: `{{0}, {4}, {8}}`, `{0, 3, 6, 9}`.
+  - Elements may be left out of the initializer list: {% raw %}`{{0}, {4}, {8}}`, `{0, 3, 6, 9}`{% endraw %}.
 - Subscripting a multidimensional array gives the inner-array element at the specified index. 
 - Range `for` can also be used on multidimensional arrays. **However, for outer loops, loop variables should always be defined as a reference (`auto &`/`const auto &`). Otherwise, they will be converted to pointers.**
 - The multidimensional array can be converted to a pointer to the first inner array (not the first element).
