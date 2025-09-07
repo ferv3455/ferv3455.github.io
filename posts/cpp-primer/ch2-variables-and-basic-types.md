@@ -26,16 +26,16 @@ date: 2025/8/31
     - Normalized mantisa: significant digits in scientific notation.
     - Special values:
 
-        <div align="center">
+<div align="center">
 
-        | Exponent | Mantisa | Value |
-        |----------|---------|-------|
-        | 0        | 0       | 0     |
-        | 255      | 0       | Infinity |
-        | 0        | not 0   | Denormalised |
-        | 255      | not 0   | Not a number (NAN) |
+| Exponent | Mantisa | Value |
+|----------|---------|-------|
+| 0        | 0       | 0     |
+| 255      | 0       | Infinity |
+| 0        | not 0   | Denormalised |
+| 255      | not 0   | Not a number (NAN) |
 
-        </div>
+</div>
 
 ### Type Conversions
 
@@ -65,23 +65,23 @@ date: 2025/8/31
   - **Two string literals adjacent to each other separated only by spaces, tabs, or newlines are concatenated into a single literal.**
   - Nonprintable and control characters can be represented using escape sequences. We can also use generalized escape sequences: `\x` followed by hexadecimal digits or `\` followed by octal digits of the character value. **`\` uses only the first three octal digits following it, but `\x` uses up all the hex digits.**
 
-    <div align="center">
+<div align="center">
 
-    | Character | Escape Sequence |
-    |------------------|-----------|
-    | newline          | `\n`     |
-    | vertical tab     | `\v`     |
-    | backslash        | `\\`     |
-    | carriage return  | `\r`     |
-    | horizontal tab   | `\t`     |
-    | backspace        | `\b`     |
-    | question mark    | `\?`     |
-    | formfeed         | `\f`     |
-    | alert (bell)     | `\a`     |
-    | single quote     | `\'`     |
-    | double quote     | `\"`     |
+| Character | Escape Sequence |
+|------------------|-----------|
+| newline          | `\n`     |
+| vertical tab     | `\v`     |
+| backslash        | `\\`     |
+| carriage return  | `\r`     |
+| horizontal tab   | `\t`     |
+| backspace        | `\b`     |
+| question mark    | `\?`     |
+| formfeed         | `\f`     |
+| alert (bell)     | `\a`     |
+| single quote     | `\'`     |
+| double quote     | `\"`     |
 
-    </div>
+</div>
 
 - Other literals: `true`/`false` (boolean) and `nullptr` (pointer/address).
 
@@ -96,14 +96,23 @@ date: 2025/8/31
   - **Loss of information from conversion is not allowed in list initialization.** It can protect us from unintentional narrowing conversions.
 
 ```cpp
-int units_sold = 0;      // copy initialization
 int units_sold(0);       // direct initialization
-int units_sold = {0};    // list initialization
+int units_sold = 0;      // copy initialization
 int units_sold{0};       // list initialization
+int units_sold = {0};    // list initialization
 ```
 
+> Summary of four forms of initialization:
+>  - ***The form of initialization is different from how the value is initialized.***
+>  - For copy initialization, we can only supply a single initializer - a constructor (not necessarily the copy constructor) will be called with the initializer passed in as the argument.
+>    - Copy initialization may be suppressed with `explicit`.
+>  - **For in-class initializers, we must either use copy initialization or list initialization (no direct initialization).** See section 2.6 for details.
+>  - We can supply a list of values only by using list initialization - **list-initializing will be preferred**.
+>    - If such constructors don't exist, it will fall back to direct-initializing with elements as arguments.
+>    - **Initializer lists don't require all elements to be of the same type** - they may be used for direct initialization.
+
 - A variable is **default initialized** without an initializer. The value depends on the type and where it is defined:
-  - Built-in types: variables defined outside of functions are zero-initialized; those defined inside are **uninitialized - undefined**. Uninitialized variables have indeterminate values, which may cause errors hard to debug.
+  - Built-in types: **variables defined outside of functions are zero-initialized**; those defined inside are **uninitialized - undefined**. Uninitialized variables have indeterminate values, which may cause errors hard to debug.
   - Classes: up to the class whether we can define objects without an initializer and what value will it have.
 
 
@@ -238,8 +247,10 @@ const int &r2 = i;  // ok: can bind const int& to plain int
 
 ### `constexpr` and Constant Expressions
 
-- A constant expression is an expression whose value cannot change and can be evaluated at compile time: **literals, `const` objects initialized from constant expressions**, etc.
+- A **constant expression** is an expression whose value cannot change and can be evaluated at compile time: **literals, `const` objects initialized from constant expressions**, etc.
 - We might define a `const` variable with an initializer that we think is a constant expression. However, when we use that variable in a context that requires a constant expression we may discover that the initializer was not a constant expression. In order to avoid this, we can **use `constexpr` declaration to ask the compiler to verify whether a variable is a constant expression**.
+  - ***Warning: `constexpr` is different from constant expressions - `constexpr` is only a way to verify whether it is a constant expression.***
+  - **`constexpr` implicitly implies `const`.**
 
 ```cpp
 constexpr int mf = 20;         // 20 is a constant expression
@@ -249,8 +260,7 @@ constexpr int sz = size();     // ok only if size is a constexpr function
 
 - The types can be used as `constexpr` are known as **literal types**: arithmetic, reference, pointer, etc.
 - `constexpr` pointers can be initialized with objects on the heap (defined outside functions or static) but not with objects on the stack.
-- **`constexpr` explicitly implies `const`.**
-  - **`constexpr` specifier applies to the pointer**, not the type to which the pointer points.
+- **`constexpr` specifier always applies to the pointer**, not the type to which the pointer points.
 
 ```cpp
 const int *p = nullptr;      // p is a pointer to a const int - low-level
