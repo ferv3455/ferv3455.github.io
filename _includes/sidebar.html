@@ -1,0 +1,43 @@
+{% if page.toc %}
+<aside class="page-outline">
+  <h2>Outline</h2>
+  <nav>
+    {{ content | toc_only }}
+  </nav>
+</aside>
+{% endif %}
+
+<style>
+  .page-outline {
+    height: auto;
+    width: 300px;
+    padding: 1rem 0.5rem;
+    border-right: 1px solid #ddd;
+    overflow: auto;
+    color: #888
+  }
+
+  .page-outline h2 {
+    margin: 0 2rem 1rem 2rem;
+  }
+
+  .page-outline ul {
+    padding-left: 0;
+  }
+
+  .page-outline a {
+    color: inherit;
+  }
+
+  @media (max-width: 1100px) {
+    .page-outline {
+      display: none;
+    }
+  }
+
+  .toc-entry {
+    white-space: nowrap;
+    overflow: scroll;
+    text-overflow: ellipsis;
+  }
+</style>
