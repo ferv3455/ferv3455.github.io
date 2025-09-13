@@ -1,66 +1,101 @@
-# Basic Information 
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+# Footer
 title: Yangcheng Gu
-position: Graduate Student (Master's)
-affiliation: Information Networking Institute, Carnegie Mellon University
-affiliation_link: https://www.cmu.edu/ini/
+author: Yangcheng Gu
 email: yangcheg@andrew.cmu.edu
+description: >- # this means to ignore newlines until "baseurl:"
+  Second-year MSIN student at CMU. This is my personal website where I share notes on programming and algorithms.
 
-# Search Engine Optimization (SEO)
-# The following information is used to improve the website traffic from search engines, e.g., Google.
-keywords: Yangcheng Gu
-description: Self-introduction and academic background of Yangcheng Gu.
-# canonical: https://minimal-light-theme.yliu.me/
+# Links
+cv_link: ./assets/files/Resume - Yangcheng Gu.pdf
+github_username:  ferv3455
+linkedin_username: yangcheng-gu
 
-# Links 
-# If you don't need one of them, you may delete the corresponding line.
-# google_scholar: https://scholar.google.com/
-cv_link: assets/files/Resume - Yangcheng Gu.pdf
-github_link: https://github.com/ferv3455
-linkedin: https://www.linkedin.com/in/yangcheng-gu/
-# twitter: https://twitter.com/GUferv3455
+# URL settings
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Images (e.g., your profile picture and your website's favicon) 
 # "favicon" and "favicon_dark" are used for the light and dark modes, respectively. 
 avatar: ./assets/img/avatar.png
 favicon: ./assets/img/ferv.png
-favicon_dark: ./assets/img/ferv.png
 
-# Footnote
-# You may use the option to disable the footnote, "Powered by Jekyll and Minimal Light theme."
-enable_footnote: true
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-toc
 
-# Auto Dark Mode
-# You may use the option to disable the automatic dark theme
-auto_dark_mode: false
+# Header pages
+header_pages:
+  - notes.md
+  - leetcode.md
 
-# Font
-# You can use this option to choose between Serif or Sans Serif fonts.
-# font: "Serif"
-font: "Sans Serif"
+# TOC settings
+toc:
+  min_level: 2
+  max_level: 3
 
-# Google Analytics ID
-# Please remove this if you don't use Google Analytics
-google_analytics: UA-111540567-4
+# Collections
+collections:
+  personal:
+    output: true
+  cpp_primer:
+    output: true
+  cracking_the_coding_interview:
+    output: true
+  cs_fundamentals:
+    output: true
+  effective_python:
+    output: true
+  fluent_python:
+    output: true
+  learning_go:
+    output: true
+  leetcode_problems:
+    output: true
+  leetcode_notes:
+    output: true
+  miscellaneous:
+    output: true
+  random_notes_of_coding:
+    output: true
 
-# Use this project as a remote theme for GitHub Pages
-# See the guide here: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
-remote_theme: yaoyao-liu/minimal-light
-
-# Markdown Engine
-markdown: CommonMarkGhPages
-highlighter: rouge
-commonmark:
-  options: ["UNSAFE", "SMART", "FOOTNOTES"]
-  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
-
-# The following files will be removed from the generated website.
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-  - README_zh_Hans.md
-  - README_zh_Hant.md
-  - README_de.md
-  - LICENSE
-  - minimal-light.gemspec
-  - html_source_file/
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

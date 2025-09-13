@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <div class="page-layout">
+        {%- include sidebar.html -%}
+        <main class="page-content" aria-label="Content">
+          <div class="wrapper">
+            {{ content }}
+          </div>
+          {%- include footer.html -%}
+        </main>
+    </div>
+
+  </body>
+
+</html>
+
+<style>
+    .page-layout {
+        display: flex;
+        flex-direction: row;
+        height: calc(100vh - 61.95px);
+    }
+
+    .page-content {
+        flex: 1;
+        overflow-y: auto;
+    }
+</style>

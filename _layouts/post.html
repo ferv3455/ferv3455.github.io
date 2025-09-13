@@ -1,137 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Blog Post Page">
-    <title>{{ page.title }} - FVSparkles</title>
+---
+layout: default
+---
 
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/highlight.css">
-    <link rel="icon" media="(prefers-color-scheme:light)" href="{{ site.baseurl }}/{{ site.favicon }}" type="image/png" />
-    <!-- {% if site.font == "Sans Serif" %}
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font_sans_serif.css">
-    {% else %}
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/font.css">
-    {% endif %} -->
-
-    <script>
-        MathJax = {
-          tex: {
+<script>
+    MathJax = {
+        tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']]
-          },
-          svg: {
+        },
+        svg: {
             fontCache: 'global'
-          }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-    </script>
-    <style>
-        @import url("https://fonts.googleapis.com/css?family=Enriqueta");
+        }
+    };
+</script>
+<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
 
-        /* Basic reset */
-        * {
-            box-sizing: border-box;
-        }
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-        html, body {
-            margin: 0;
-            height: 100%;
-            font-family: 'Enriqueta', sans-serif;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
-            padding: 20px;
-            text-align: left;
-        }
-        
-        header a {
-            color: white;
-            margin: 0 30px;
-        }
-
-        main {
-            flex: 1; /* Allow main content to grow and take up space */
-            width: 80%;
-            margin: 20px auto;
-            background-color: white;
-            padding: 40px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .author, .post-date {
-            font-size: 0.9em;
-            color: gray;
-        }
-
-        hr {
-            margin-top: 10px;
-            margin-bottom: 20px;
-            height: 0;
-            border: solid gray 1px;
-        }
-
-        article {
-            line-height: 1.6;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        img {
-            display: block;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <a href="/index">Home</a>
-        <a href="javascript:history.back()">Go Back</a>
-        <a href="/postlist">List</a>
-        <a href="/search">Search</a>
+    <header class="post-header">
+        <h1 class="home-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+        <p class="post-meta">
+            <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+                {{ page.date | date: date_format }}
+            </time>
+            {%- if page.author -%}
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card"
+                    itemprop="name">{{ page.author }}</span></span>
+            {%- else -%}
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card"
+                    itemprop="name">{{ site.author }}</span></span>
+            {%- endif -%}
+        </p>
     </header>
 
-    <main>
-        <h1>{{ page.title }}</h1>
-        <p class="author">By Yangcheng Gu</p>
-        <p class="post-date">Published on {{ page.date | date: "%B %d, %Y" }}</p>
-        <hr />
-        
-        <article style="margin: 0 10px;">
-            {{ content }}
-        </article>
-    </main>
+    <div class="post-content e-content" itemprop="articleBody">
+        {{ content }}
+    </div>
 
-    <footer>
-        <p>Copyright &copy; 2024 FVSparkles. All rights reserved.</p>
-        <!-- <p><a href="#">Contact</a> | <a href="#">Privacy Policy</a></p> -->
-    </footer>
-</body>
-</html>
+    {%- if site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+    {%- endif -%}
+
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

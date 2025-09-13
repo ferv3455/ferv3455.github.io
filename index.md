@@ -1,10 +1,9 @@
 ---
-layout: homepage
+layout: home
+title: "About Me"
 ---
 
-# Welcome!
-
-## About Me
+## Introduction
 
 **I am a second-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN).** I expect to finish my coursework in December 2025 and kick off my career in 2026.
 
@@ -13,9 +12,6 @@ As an international student from China, I finished my school years in my hometow
 ## About the Webpage
 
 This website acts as an introduction to my academic and professional experience as well as an archive of previously published personal blogs. The content of these blogs are technical notes from extensive reading and projects, involving programming languages, data structures and algorithms, computer systems, etc. They are written in Chinese/English.
-
-**To have a look at my notes, please visit [here](/postlist).** They record my journey of learning programming languages and algorithms after class, and I hope whoever reads them can benefit from these notes.
-
 
 ## Education
 
@@ -27,7 +23,7 @@ This website acts as an introduction to my academic and professional experience 
 
 
 
-## Internship Experiences <small>[[Show Details]](/intern)</small>
+## Internship Experiences <small>[[Show Details]](/personal/internship)</small>
 
 - **Tier Criteria Management System** <small>(May 2025 - August 2025)</small>
   - Privacy and Security - Data Lifecycle Management - AI Governance, TikTok Inc.
@@ -44,7 +40,7 @@ This website acts as an introduction to my academic and professional experience 
 
 - Li, X.; Yang, P.; <strong>Gu, Y.</strong>; Zhan, X.; Wang, T.; Xu, M.; and Xu, C. “Deep Active Learning with Noise Stability.” Manuscript submitted to the AAAI-24 Conference for publication.
 
-## Research Experiences <small>[[Show Details]](/research)</small>
+## Research Experiences <small>[[Show Details]](/personal/research)</small>
 
 - **Deep Active Learning with Noise Stability** <small>(July 2023 - August 2023)</small>
   - Computational Biology Department, Carnegie Mellon University
@@ -114,3 +110,4 @@ This website acts as an introduction to my academic and professional experience 
   - Individual project for the course <em>Introduction to Database Systems</em>
   - Implemented components of a relational database management system, including buffer pool manager, efficient database indexes (B+ Tree), query execution/optimization and concurrency control mechanisms.
   - Written in C++17
+
