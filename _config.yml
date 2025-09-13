@@ -32,7 +32,7 @@ linkedin_username: yangcheng-gu
 
 # URL settings
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://ferv3455.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Images (e.g., your profile picture and your website's favicon) 
 # "favicon" and "favicon_dark" are used for the light and dark modes, respectively. 
@@ -44,6 +44,7 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-toc
+  - jekyll-sitemap
 
 # Header pages
 header_pages:
