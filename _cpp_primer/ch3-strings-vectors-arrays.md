@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chapter 3 Strings, Vectors, and Arrays
-date: 2024/9/19
+date: 2025/9/5
 chapter: 3
 toc: true
 ---

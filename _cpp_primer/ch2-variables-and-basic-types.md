@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chapter 2 Variables and Basic Types
-date: 2025/8/31
+date: 2025/9/14
 chapter: 2
 toc: true
 ---
@@ -9,6 +9,8 @@ toc: true
 ## 2.1 Primitive Built-in Types
 
 ### Arithmetic Types
+
+<img src="./attachments/table-2-1-arithmetic-types.png" />
 
 - Machine-level representation:
   - The smallest chunk of addressable memory is a byte.
@@ -50,12 +52,12 @@ toc: true
 
 - Integer literal:
   - Decimal, octal (`0`), hexadecimal (`0x`/`0X`) notation.
-    - By default, **decimal literals are signed** whereas octal and hexadecimal literals can be either signed or unsigned (dependent not on the system but on the value).
-    - **The literals have the smallest type of `int`, `unsigned int`, `long`, `unsigned long`, `long long`, or `unsigned long long`** (unsigned types not applicable to decimals). There are no literals of `short`.
-    - The type can be explicitly specified with suffixes: `u`/`U` for unsigned, `l`/`L` for long, and `ll`/`LL` for long long. This is specified as the **minimum type** - `l` may be long long.
+    - **The octal and hexadecimal literals have the smallest type of `int`, `unsigned int`, `long`, `unsigned long`, `long long`, or `unsigned long long`. The decimal literals have the smallest type of `int`, `long`, or `long long` (decimal literals are signed by default).** There are no literals of `short`.
+    - The type can be explicitly specified with suffixes: `u`/`U` for `unsigned`, `l`/`L` for `long`, and `ll`/`LL` for `long long`. This is specified as the **minimum type** - `l` may be `long long`.
   - **Technically speaking, the value of a decimal literal is never a negative number.**
 - Floating-point literal: decimal point (`.`) or an exponent specified using scientific notation (`E` or `e`).
-  - The type can be explicitly specified with suffixes: `f`/`F` for float, and **`l`/`L` for long double**.
+  - Floating-point literals are always `double` by default. **It doesn't depend on the value.**
+  - The type can be explicitly specified with suffixes: `f`/`F` for `float`, and `l`/`L` for `long double`.
 - Character literal: enclosed in single quotes (`'`).
 - String literal: enclosed in double quotes (`"`). The type is **array of constant `char`s (`const char []`)**, where a null character (`'\0'`) will be appended at the end.
   - The type can be explicitly specified with **prefixes**: `u` for `char16_t`, `U` for `char32_t`, `L` for `wchar_t`, `u8` for utf-8 `char` string literals.
