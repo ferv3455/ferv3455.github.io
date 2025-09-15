@@ -12,7 +12,7 @@ toc: true
 
 - When we overload an operator, the meaning of it - including the type of operands and the result - depends on how it is defined. However, **the number of operands and the precedence and associativity cannot be changed**.
 - Every expression in C++ is either an **rvalue** or an **lvalue**. When we use an object as an rvalue, we use the object's value. When we use an object as an lvalue, we use the object's identity (location in memory).
-  - **We can use an lvalue when an rvalue is required, but we cannot use an rvalue when an lvalue is required.**
+  - **We can use an lvalue when an rvalue is required, but we cannot use an rvalue when an lvalue is required. The only exception: an rvalue reference can only be bound to an rvalue (section 13.5).**
   - **`const` variables are still lvalues** - some operators (e.g. assignment) requires a non-`const` lvalue as the left-hand operand.
 - When we apply `decltype` to an expression, **the result is a reference type iff the expression yields an lvalue**.
 
@@ -208,7 +208,9 @@ uival + lval;    // conversion depends on the size of unsigned int and long
 - Array to pointer conversions are not performed when an array is used with `decltype` or as the operand of `&`, `sizeof`, or `typeid` (section 19.2), or when we initialize a reference with it.
 - Pointer conversions:
   - **A constant integral value of 0 and the literal `nullptr` can be converted to any pointer type.**
-  - A pointer to any non-`const` type can be converted to `void *`, and a pointer to any type can be converted to `const void *`.
+  - **A pointer to any non-`const` type can be converted to `void *`, and a pointer to any type can be converted to `const void *`.**
+  - The name of an array can be converted to a pointer to the array's element type (section 3.5).
+  - The name of a function can be converted to a pointer to the function (section 6.7).
   - A base-class pointer (or reference) can be bound to a derived-class object (section 15.2).
 - Conversions to `bool`: compare to zero for arithmetic types, compare to `nullptr` for pointers, and call conversion to `bool` (`operator bool() const`) for class types.
 - A pointer to a non-`const` type can be converted to low-level `const` pointer type. The reverse conversion does not apply.

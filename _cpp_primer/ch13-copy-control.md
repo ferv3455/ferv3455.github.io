@@ -66,8 +66,8 @@ void swap(Foo &lhs, Foo &rhs)
 	- **Expressions that yield lvalues**: functions that return lvalue references, along with the assignment, subscript, dereference, and prefix increment/decrement operators.
 	- **Expressions that yield rvalues**: functions that return a nonreference type, along with the arithmetic, relational, bitwise, and postfix increment/decrement operators.
 - **Binding references to values:**
-	- lvalue: we can only bind an lvalue reference (or to `const`) to it
-	- rvalue: we can bind an lvalue reference to `const` or an rvalue reference to it
+	- **lvalue: we can only bind an lvalue reference (or to `const`) to it**
+	- **rvalue: we can bind an lvalue reference to `const` or an rvalue reference to it**
 
 ```cpp
 int i = 42;
