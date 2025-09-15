@@ -1,31 +1,147 @@
 ---
 layout: post
 title: Chapter 6 Functions
-date: 2024/9/21
+date: 2025/9/15
 chapter: 6
 toc: true
 ---
 
-## Function Basics
+## 6.1 Function Basics
 
-- Call operator `()`: takes an expression that is a function/pointer to a function, and a comma-separated list of arguments is inside the parentheses.
-- **The return type of a function may not be an array type or a function type, but a pointer to either of them is acceptable.**
-- Automatic objects exist only while a block is executing. Parameters are automatic objects initialized by the arguments passed to the function.
-- **Each local `static` object is initialized before the first time execution pass through the object's definition. Local `static`s of built-in type are value-initialized to zero.**
-- Parameter names are often omitted in a declaration, but they can assist in readability.
+- Arguments are initializers for the function's parameters. All parameters are always initialized. **We have no guarantees about the order in which arguments are evaluated (section 4.1).**
+  - Implicit type conversion is allowed just as in any initialization.
+- A function's parameter list can be empty but not omitted. For compatibility with C, an empty parameter list can be specified as `void`.
+  - Local variables at the outermost scope of the function body may not use the same name as any parameter - they behave like local variables.
+  - **Parameter names are optional.** Unused parameters can be omitted in a declaration.
+- **The return type of a function may not be an array type or a function type, but a pointer to either of them is acceptable (section 6.3 and 6.7).**
 
-## Argument Passing
+### Local Objects
 
-- Argument passing works exactly the same as variable initialization.
-- When we copy an argument (pass by value) to initialize a parameter, top-levels `const`s are ignored. So a top-level `const` parameters can accept either a `const` or a non-`const` object. **Because of this feature, two functions with parameters of type `const int` and `int` cannot be overloaded (accept identical arguments).**
-- Arrays will be passed as a pointer (no matter the declaration). The size of the array is irrelevant and unknown to the function. **When passing a multi-dimensional array, the first dimension will be ignored, and other dimensions indicate the type of the pointer.**
-- **Array parameters can also be defined as a reference: `int (&arr)[10]`. The dimension is part of the type, and it can only accept arrays of the given size.**
-- Taking a varying number of arguments: `initializer_list`, `...`, or variadic template.
-	- `initializer_list` behaves as a `vector` of `const` values. **The type needs to be specified beforehand.** When the function is called, the sequence of values needs to be wrapped in curly braces.
-	- **`initializer_list` can be automatically unpacked as parameters for another function.**
-	- **Ellipsis parameters are used to be compatible for C.** It appears as the last element in a parameter list. Arguments can be extracted with C library `varargs`.
+- **Automatic objects** are objects that exist only while a block is executing. Parameters and local variables are automatic objects, which hide declarations of the same name made in an outer scope.
+  - Storage for parameters/local variables is allocated when the function begins and released when the function ends.
+- **Local `static` objects are initialized at the first time execution reaches their definition inside the function.** Their lifetime continues across function calls.
+  - Local `static` objects are value initialized without an explicit initializer.
 
-## Return Types and the `return` Statement
+### Function Declarations
+
+- Function declarations are also known as **function prototypes**.
+- Like any other name, a function may be declared multiple times but defined only once. Functions should be declared in header files and defined in source files.
+- In a declaration, a semicolon replaces the function body. Parameter names are often omitted in a declaration, but they can be used to improve readability.
+
+### Separate Compilation
+
+```bash
+clang++ main.cpp hello.cpp -o main         # compile and link in one step
+
+clang++ -c main.cpp -o main.o              # separate compilation to object code
+clang++ -c hello.cpp -o hello.o
+clang++ main.o hello.o -o main             # link object files
+```
+
+
+## 6.2 Argument Passing
+
+> Parameter initialization works the same way as variable initialization.
+
+### Passing Arguments by Value
+
+- When we initialize a nonreference type parameter from an argument, the value of the initializer (argument) is copied. The function does not affect the argument.
+  - The same applies to pointers: the address is copied.
+
+### Passing Arguments by Reference
+
+- When we initialize a reference type parameter from an argument, it is bound to the object from which it is initialized. Copies are avoided.
+- Reference parameters let us return multiple results from a function.
+
+### `const` Parameters and Arguments
+
+- Just as in any other initialization, top-level `const`s (of both sides) are ignored. Because of this, **two functions with parameters differing only in top-level `const`s cannot be overloaded**.
+
+```cpp
+// We can pass either a const or a non-const int to the following functions
+void fcn(const int i);
+void fcn(int i);           // error: redefinition of fcn(int)
+```
+
+- Low-level `const`s are not ignored and thus be matched exactly.
+- **Using a reference instead of a reference to `const` unduly limits the type of arguments that can be used with the function.** Use references to `const` whenever possible.
+  - References to `const` can be bound to rvalues (e.g. arbitrary expressions, literals, objects of convertible types).
+  - References to `const` can be bound to `const` lvalues (e.g. `const` objects, low-level `const` references).
+
+
+### Array Parameters
+
+- Since we cannot copy an array, and an array is usually converted to a pointer (section 3.5), we are actually passing a pointer (without the size) when we pass an array to a function.
+
+```cpp
+// These three declarations are equivalent
+void print(const int*);
+void print(const int[]);
+void print(const int[10]);  // dimension is only for documentation purposes
+
+int i = 0, j[2] = {0, 1};
+print(&i);    // ok: int*
+print(j);     // ok: int*, which can be used to initialize const int*
+```
+
+- Three common techniques to manage pointer parameters (sizes):
+  - Add an end marker in the array (e.g. null character in C-style strings).
+  - Pass pointers to the first and one past the last element (STL convention).
+  - Pass a size parameter.
+- **Use pointers to `const` whenever possible.**
+- We may define a parameter that is a reference to an array - the size is part of the type. However, this also limits the usefulness of the function.
+- **A multi-dimensional array is passed as a pointer to its first element, which is an array. Therefore, the sizes of the second and subsequent dimensions must be specified.**
+
+
+### `main`: Handling Command-Line Options
+
+- The second parameter of `main` (`argv`) is an array of pointers to C-style strings (null-terminated) (`char *argv[]`). The array can be alternatively defined as a pointer (`char **argv`).
+- **The element just past the last in `argv` is guaranteed to be 0 (`nullptr`).**
+
+
+### Functions with Varying Parameters
+
+- Three primary ways to write a function that takes a varying number of arguments: `initializer_list` (values of the same type), variadic templates (section 16.4), ellipsis (for compatibility with C).
+- **`initializer_list` from `initializer_list` header works like a `vector` of `const` values.**
+
+```cpp
+// Initialization
+initializer_list<T> lst;           // default initialization: empty list
+initializer_list<T> lst{a, b, c};  // list initialization (may use =)
+initializer_list<T> lst2(lst);     // copy initialization (may use =)
+
+// Limited operations
+lst.size();
+lst.begin();
+lst.end();
+```
+
+- **We enclose a sequence of values in curly braces to pass them to a function that takes an `initializer_list` parameter** - they must be of the same type as elements in the `initializer_list` (or convertible to that type without precision loss).
+- Note: `auto` can be used to deduce the type (`initializer_list<T>`) of an initializer list, and the same idea applies to using range `for` loop on an initializer list. **However, mixed types are not allowed - no implicit conversions are done.**
+
+```cpp
+auto lst = {0, 1, 2};         // lst is an initializer_list<int>
+auto lst2 = {0.1, 0.2, 0.3};  // lst2 is an initializer_list<double>
+auto lst3 = {0, 1, 2.2};      // error: mixed types
+
+for (auto &i : {0, 1, 2}) { ... }    // ok: i is an int
+for (auto &i : {0, 1, 2.2}) { ... }  // error: mixed types
+```
+
+- **Ellipsis parameters are used to be compatible with C, in which `varargs` is used to extract the arguments.**
+  - An ellipsis parameter must appear as the last element in a parameter list.
+  - The comma before the ellipsis is optional if there are other parameters.
+
+```cpp
+void foo(int, int, ...);
+void foo(int, int...);
+void foo(...);
+```
+
+
+## 6.3 Return Types and the `return` Statement
+
+---
 
 - **The return value is used to initialize a temporary at the call site (possible copy), and that temporary is the result of the function call (another copy if assigned to a variable).**
 - Functions can return a braced list of values, which is used to initialize the temporary that represents the function's return.

@@ -104,7 +104,7 @@ int units_sold = {0};    // list initialization
 >  - **For in-class initializers, we must either use copy initialization or list initialization (no direct initialization).** See section 2.6 for details.
 >  - We can supply a list of values only by using list initialization - **list-initializing will be preferred**.
 >    - If such constructors don't exist, it will fall back to direct-initializing with elements as arguments.
->    - **Initializer lists don't require all elements to be of the same type** - they may be used for direct initialization.
+>    - **Initializer lists don't require all elements to be of the same type** - they may be used for direct initialization. **This is different from the template `initializer_list`, which requires elements to be of the same type.**
 
 - A variable is **default initialized** without an initializer. The value depends on the type and where it is defined:
   - Built-in types: **variables defined outside of functions are zero-initialized**; those defined inside are **uninitialized - undefined**. Uninitialized variables have indeterminate values, which may cause errors hard to debug.
@@ -114,8 +114,8 @@ int units_sold = {0};    // list initialization
 ### Variable Declarations and Definitions
 
 - C++ supports separate compilation. In order to share symbols and code across files, declarations and definitions are distinguished:
-  - Declaration makes a name known to the program (included to use the name by others).
-  - Definition creates the associated entity (**the type should be in line with declaration. The compiler will not necessarily check this**).
+  - Declaration makes a name known to the program (included to use the name by others). A symbol may be declared multiple times.
+  - Definition creates the associated entity (**the type should be in line with declaration. The compiler will not necessarily check this**). A symbol may be defined only once in a program.
 - **A variable definition is a declaration** (in contrast to "definition" mentioned above). We need to use **`extern` without an explicit initializer** to obtain a declaration that is not also a definition.
   - **It is an error to provide an initializer on an `extern` inside a function.**
   - To use a variable in more than one file requires declarations separate from definition.
@@ -156,7 +156,7 @@ extern int z = 0;  // declaration and definition
 - The type of a reference and the referred object should match exactly with two exceptions: 
   - We can initialize a reference to `const` from **any expression convertible to the type of reference** (section 2.4.1).
   - We can initialize a reference to a base-class type from **an object of a derived-class type** (section 15.2.3).
-- **A reference may be bound only to an object**, not to a literal or the result of an expression. Basically, **a non-`const` reference must be bound to an lvalue** (section 4.1).
+- **A reference may be bound only to an object**, not to a literal or the result of an expression. Basically, **a non-`const` reference must be bound to an non-`const` lvalue (section 4.1)**.
 
 ### Pointers
 
@@ -200,7 +200,7 @@ extern const int bufSize;
 ### References to `const`
 
 - "Reference to `const`" is abbreviated as "`const` reference". **There are no `const` references** - a reference is not an object.
-- We can initialize a reference to `const` from **any expression convertible to the type of reference - non-`const` object, literal or general expression**. Basically, **we can bind a `const` reference to a rvalue (section 4.1)**.
+- We can initialize a reference to `const` from **any expression convertible to the type of reference - non-`const` object, literal or general expression**. Basically, **we can bind a `const` reference to a rvalue or a `const` lvalue (section 4.1)**.
   - In this way, a **temporary object** is created by the compiler to store the result of the expression, and is bound by the reference.
   - The underlying object might be non-`const` and be changed by other means.
 
@@ -224,7 +224,7 @@ const int &ri = dval;     // ok: bound to a temporary object - int 3
 ### Top-Level `const`
 
 - **Top-level `const`**: the pointer (object) itself is `const`; **low-level `const`**: referring/pointing to a `const` object.
-- When we copy an object, **top-level `const`s (of the copied object) are ignored** - copying doesn't change the copied object, but **low-level `const` (of the copied object) is never ignored**.
+- When we copy an object, **top-level `const`s (of both sides) are ignored** - copying doesn't change the copied object, and we can declare the new object as `const` or non-`const` as we wish. However, **low-level `const` is never ignored**.
 
 ```cpp
 int i = 0;

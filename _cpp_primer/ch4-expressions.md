@@ -78,18 +78,23 @@ bool b2 = -b;  // b2 is true: promoted to int 1, negated to -1, converted back t
   - For built-in types, at most one value can be contained.
   - For class types, the following choices are available:
     - For aggregate classes (section 7.5), each field in the initializer list is copied to the corresponding member of the object.
-    - The assignment operator taking an initializer list will be called if it exists.
+    - The assignment operator taking an initializer list will be called if it exists. **Priority is given to the best type match.** **Type narrowing conversions are not allowed.**
     - If no such operator exists, the compiler will attempt to use a constructor: the constructor that takes an initializer list will be called if it exists; otherwise, the compiler will try to find a constructor that matches the number and types of the elements in the initializer list.
   - For any type, the initializer list can be empty: **a value-initialized temporary is generated and assigned to the left-hand operand.**
 
 ```cpp
 class Base {
  public:
-  Base(int i, int j);                    // 3rd choice
-  Base(initializer_list<int> lst);       // 2nd choice
-  operator=(initializer_list<int> lst);  // 1st choice
+  Base(int i, int j);                       // 5th choice
+  Base(initializer_list<double> lst);       // 4th choice
+  Base(initializer_list<int> lst);          // 3rd choice
+  operator=(initializer_list<double> lst);  // 2nd choice
+  operator=(initializer_list<int> lst);     // 1st choice
   operator=(int i, int j);  // error: assignment operator must take exactly one parameter
 }
+
+Base b = {1, 2};
+Base b = {1, 2.2};     // those with initializer_list<int> are not considered
 ```
 
 - When we use the compound assignment (e.g. `+=`), the left-hand operand is evaluated only once. If we use an ordinary assignment, the left-hand operand is evaluated twice.
