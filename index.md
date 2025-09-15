@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "About Me"
+title: "About Me - Yangcheng Gu"
 ---
 
 ## Introduction
