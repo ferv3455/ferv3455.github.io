@@ -84,6 +84,9 @@ Notes:
   - Fast recovery (three duplicate ACKs): reduce `cwnd` by half
   - Timeout: start all over (slow start)
 - **Nagle's Algorithm**: buffer small packets and send them together to reduce overhead - send when the previous packet is acknowledged
+- **Packet sticking**: multiple small packets are combined into a single TCP segment to be received together
+  - Sender: add length fields to determine the boundary of each packet
+  - Receiver: use length fields to extract each packet
 - Three-way handshake:
   - Connection initialization: sequence number exchange
   - Confirm that both ends are ready to **send and receive data**

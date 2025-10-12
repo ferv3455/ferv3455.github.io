@@ -156,7 +156,7 @@ extern int z = 0;  // declaration and definition
 - The type of a reference and the referred object should match exactly with two exceptions: 
   - We can initialize a reference to `const` from **any expression convertible to the type of reference** (section 2.4.1).
   - We can initialize a reference to a base-class type from **an object of a derived-class type** (section 15.2.3).
-- **A reference may be bound only to an object**, not to a literal or the result of an expression. Basically, **a non-`const` reference must be bound to an non-`const` lvalue (section 4.1)**.
+- **A reference may be bound only to an object**, not to a literal or the result of an expression. Basically, **a non-`const` reference must be bound to a non-`const` lvalue (section 4.1)**.
 
 ### Pointers
 
@@ -200,7 +200,7 @@ extern const int bufSize;
 ### References to `const`
 
 - "Reference to `const`" is abbreviated as "`const` reference". **There are no `const` references** - a reference is not an object.
-- We can initialize a reference to `const` from **any expression convertible to the type of reference - non-`const` object, literal or general expression**. Basically, **we can bind a `const` reference to a rvalue or a `const` lvalue (section 4.1)**.
+- We can initialize a reference to `const` from **any expression convertible to the type of reference - non-`const` object, literal or general expression**. Basically, **we can bind a `const` reference to an rvalue or an lvalue (section 4.1)**.
   - In this way, a **temporary object** is created by the compiler to store the result of the expression, and is bound by the reference.
   - The underlying object might be non-`const` and be changed by other means.
 

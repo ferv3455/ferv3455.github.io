@@ -74,6 +74,7 @@ void X::h() { return f(); } // ok: declaration for f is now in scope
 
 - `static` member functions do not have a `this` pointer. As a result, non-`static` members cannot be called inside `static` member functions.
 - **`static` data members must be defined and initialized outside the class body.** Like member functions, after the class name is seen, the remainder of the definition is in the scope of the class.
+  - `static` data members can be initialized with a static member function. Watch out for cyclic initialization.
 
 ```cpp
 // define and initialize a static class member with a static member function

@@ -106,7 +106,8 @@ for (auto &c : s) {  // Here c is of type const char &
     - Otherwise, if `T` is an array type, each element of the array is value-initialized.
     - Otherwise, the object is zero-initialized (e.g. built-in types).
 - We must use direct initialization to supply a size. How this is enforced (`explicit`) is described in section 7.5.4.
-- **If list initialization is used to construct a `vector`, the compiler will attempt to list-initialize it first and then fall back to direct-initializating the `vector`.**
+- **If list initialization is used to construct a `vector`, the compiler will attempt to list-initialize it first and then fall back to direct-initializing the `vector`.**
+  - "Attempt": type conversions are allowed as long as they are not narrowing conversions.
 
 ```cpp
 // Empty vector
@@ -159,7 +160,7 @@ vector<T> v6{n};             // not expected behavior: direct initializing the v
   - Some stream iterators can only be incremented.
 - We should compare two valid iterators using `==` or `!=`: most iterator types have no relational operators (`<`, `>`, `<=`, `>=`).
 - The library types with iterators define types named `iterator` and `const_iterator`: `const_iterator` behaves like a pointer to `const` *(ambiguity in original text here)*.
-  - **If the container (or `string`) is `const`, then we may only its `const_iterator` type: `begin()` and `end()` return `const_iterator`.**
+  - **If the container (or `string`) is `const`, then we may only use its `const_iterator` type: `begin()` and `end()` return `const_iterator`.**
   - Otherwise, we may call `cbegin()` and `cend()` to get `const_iterator`s.
 
 
@@ -219,7 +220,8 @@ int (&arrRef)[10] = arr;   // arrRef refers to an array of ten ints
 
 ### Pointers and Arrays
 
-- Arrays have a special property - in most places when we use an array, the compiler automatically substitiutes a pointer to the first element of the array (e.g. subscription).
+- Arrays have a special property - in most places when we use an array, the compiler automatically substitutes a pointer to the first element of the array (e.g. subscription).
+  - `arr` is equivalent to `&arr[0]` and `&arr`: it is allowed to take the address of an array.
   - **Using `auto` with an array will yield a pointer type. However, `decltype` will yield the array type with equal length** - length is part of the type.
 - Pointers are iterators: we can write a loop using a pointer to the first element and an off-the-end pointer.
   - **`iterator` has two functions `begin()` and `end()`** that return pointers to the first and one-past-the-end elements of an array.
@@ -256,7 +258,7 @@ int (&arrRef)[10] = arr;   // arrRef refers to an array of ten ints
   - We can initialize a multidimensional array using a bracketed list of initializers. **The nested braces are optional.**
   - Elements may be left out of the initializer list: {% raw %}`{{0}, {4}, {8}}`, `{0, 3, 6, 9}`{% endraw %}.
 - Subscripting a multidimensional array gives the inner-array element at the specified index. 
-- Range `for` can also be used on multidimensional arrays. **However, for outer loops, loop variables should always be defined as a reference (`auto &`/`const auto &`). Otherwise, they will be converted to pointers.**
+- Range `for` can also be used on multidimensional arrays. **However, for outer loops, loop variables should always be defined as a reference (`auto &`/`const auto &`). Otherwise, they will be converted to pointers - the same behavior as `auto x = arr;`.**
 - The multidimensional array can be converted to a pointer to the first inner array (not the first element).
   - The type of inner arrays can be aliased or defined as `auto`. Or we can use type aliases for types of inner arrays to improve readability.
 

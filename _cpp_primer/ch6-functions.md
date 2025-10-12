@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chapter 6 Functions
-date: 2025/9/15
+date: 2025/10/12
 chapter: 6
 toc: true
 ---
@@ -141,112 +141,247 @@ void foo(...);
 
 ## 6.3 Return Types and the `return` Statement
 
----
+### Functions with No Return Value
 
-- **The return value is used to initialize a temporary at the call site (possible copy), and that temporary is the result of the function call (another copy if assigned to a variable).**
-- Functions can return a braced list of values, which is used to initialize the temporary that represents the function's return.
-- The main function is allowed to terminate without a return (implicitly return 0). `cstdlib` defines two preprocessor variables for program status.
-- Functions cannot return arrays, but they can return pointers to arrays: **`int (*func(int i))[10]` declares a function returning a pointer to an `int` array of size 10.**
-- To avoid complicated return types, trailing return types can be used: `auto func(int i) -> int(*)[10]` declares the same function.
-- `decltype` can also used to avoid complicated return values.
-
-## Overloaded Functions
-
-- Using type alias will not make types different for overloading.
-- Top-level `const` parameters are indistinguishable from ones without a top-level `const`.
-- **Low-level `const` can be used in overloading. The compiler will prefer the non`const` versions when we pass a non`const` object or pointer to an overloaded function.**
-- If more than one function matches the call, it is an ambiguous call.
-- **Local variables will hide uses of all declarations with that name in an outer scope. Functions with the same name will not overload. This is because name lookup happens before type checking.**
-
-## Features for Specialized Uses
-
-- Only trailing parameters can have default arguments.
-- Each parameter can have its default specified only once in a given scope (in the header).
-- **A default argument can be any expression that has a type that is convertible to the type of the parameter, including global variables, function calls, etc.**
+- **A function with a `void` return type may use `return expression` only to return the result of calling another `void` function** - though it actually returns nothing.
 
 ```cpp
-// the declarations of wd, def, and ht must appear outside a function
-sz wd = 80;
-char def = ' ';
-sz ht();
-string screen(sz = ht(), sz = wd, char = def);
-string window = screen(); // calls screen(ht(), 80, ' ')
-
-void f2()
-{
-	def = '*'; // changes the value of a default argument
-	sz wd = 100; // hides the outer definition of wd but does not change the default
-	window = screen(); // calls screen(ht(), 80, '*')
+void g() {}
+void f() {
+    return g();  // ok because g() has type void
 }
 ```
 
-- **`constexpr` function: the `return` type and the type of each parameter must be a literal type, and the function body must contain exactly only one `return` statement. Compilers will expand the function immediately (replace with a value inline).**
-	- A `constexpr` function is permitted to return a non-constant value (when non-constant expression is passed in as arguments).
-	- **The aim of introducing `constexpr` functions and types is to expand at compilation.**
+### Functions That Return a Value
+
+- **The return value is used to initialize a temporary at the call site (possible copy/move construction), and that temporary is the result of the function call. In our code, that temporary is usually used to initialize another named object (possible copy/move construction).**
+  - Values are returned in the same way as variable initialization: the value returned must have the same type as the return type, or it must have a type that can be implicitly converted (section 4.11) to that type.
+  - Under C++11, functions can return a braced list of values: they are used for list initialization of the temporary that represents the return value.
+
+```cpp
+T func() {
+    T obj;
+    return obj;   // T tmp = obj;
+}
+T obj = func();   // T obj = tmp;
+```
+
+- Do not return a reference or pointer to a local object. It will be destroyed when the function ends.
+  - **Be careful about implicit type conversions!**
+
+```cpp
+const string &manip()
+{
+    string ret;
+    if (!ret.empty())
+        return ret;      // WRONG: returning a reference to a local object
+    else
+        return "Empty";  // WRONG: "Empty" is converted to a temporary std::string
+}
+```
+
+- **Calls to functions that return references are lvalues; other return types yield rvalues.**
+- The `main` function is allowed to terminate without a return. 0 is implicitly returned to indicate success. `cstdlib` defines two preprocessor variables for program status return values: `EXIT_SUCCESS` and `EXIT_FAILURE`.
+- The `main` function may not call itself recursively.
+
+
+### Returning a Pointer to an Array
+
+- **We can only return a pointer to an array, not an array (arrays cannot be copied).**
+- Defining functions that return pointers or references to arrays can be intimidating. We may use type aliases, trailing return types, or `decltype` to simplify the syntax.
+
+```cpp
+// Original way
+int (*func(int i))[10];  // returns a pointer to an array of size 10
+
+// Type aliases
+typedef int arrT[10];
+using arrT = int[10];
+arrT *func(int i);
+
+// Trailing return type
+auto func(int i) -> int(*)[10];
+
+// decltype
+int arr[10];
+decltype(arr) *func(int i);
+```
+
+### Returning a Pointer to a Function
+
+*Refer to section 6.7.*
+
+## 6.4 Overloaded Functions
+
+- Functions that have the same name but different parameter lists and that appear in the same scope are overloaded.
+  - The `main` function may not be overloaded.
+- Overloaded functions must differ in the number or the types of their parameters. The following do not count as differences:
+  - Return types.
+  - Parameter names.
+  - **Type aliases (e.g. `typedef`, `using`).**
+  - **Top-level `const` qualifiers of parameters.**
+- We can overload based on whether a parameter is a reference or pointer to `const` (low-level `const`). The compiler will prefer the non-`const` versions when we pass a non-`const` object or pointer to non-`const`.
+  - `const_cast` is useful in overloaded functions - one version can call the other and cast away `const`.
+- For any given call to an overloaded function, there are three possible outcomes: best match, no match, ambiguous call.
+
+### Overloading and Scope
+
+> It is a bad idea to declare a function locally.
+
+- Names do not overload across scopes - local variables hide all declarations of the same name in an outer scope.
+  - **In C++, name lookup happens before type checking.**
+
+
+## 6.5 Features for Specialized Uses
+
+### Default Arguments
+
+- Only trailing parameters can have default arguments.
+  - We should order the parameters so that those most likely to have default values appear last.
+- Arguments in the call are resolved by position. The default arguments are used for the trailing arguments of a call.
+- **Each parameter can have its default specified only once in a given scope.** Subsequent declarations can only add a default for a parameter without a default.
+
+```cpp
+void func(int, int, char = ' ');
+void func(int, int, char = '*');  // error: redeclaration
+void func(int, int = 0, char);    // ok: adds a default argument
+```
+
+- A default argument can be any expression that has a type convertible to the type of the parameter **except for local variables**.
+
+```cpp
+// Global variables
+int wd = 80;
+char def = ' ';
+int ht();
+
+void func(int = ht(), int = wd, char = def);
+```
+
+- **Names used as default arguments are resolved in the scope of the function declaration. The value that those names represent is evaluated at the time of the call**.
+
+```cpp
+void f2()
+{
+	def = '*';          // changes the global: affects default argument
+	int wd = 100;       // hides the global: does not affect default argument
+	func();             // calls func(ht(), 80, '*')
+}
+```
+
+
+### Inline and `constexpr` Functions
+
+- Calling a function is apt to be slower than evaluating the equivalent expression: saving/restoring registers, copying arguments, branching to the function, etc.
+- A function specified as `inline` may be expanded at each call. **It is only a request: the compiler may choose to ignore it if it is complex.**
+- A `constexpr` function can be used in a constant expression. It must meet certain restrictions:
+  - The `return` type and the parameter types must be literal types (section 2.4).
+  - The function body must contain exactly one `return` statement **except for statements that generate no actions (e.g. null statements, type aliases, `using` declarations)**.
+- **A `constexpr` function is permitted to accept non-`constexpr` arguments and return non-`constexpr` values. In this case, the function is evaluated at compile time.** The call will be replaced (inline) by a resulting value iff all arguments are constant expressions (the value is evaluated during compilation). Otherwise, the function is called and executed at runtime.
 
 ```cpp
 constexpr int new_sz() { return 42; }
-// scale(arg) is a constant expression if arg is a constant expression
 constexpr size_t scale(size_t cnt) { return new_sz() * cnt; }
+
+constexpr int foo = new_sz();      // ok
+int arr[scale(2)];                 // ok: equivalent to arr[84]
+int i = 2;
+int arr2[scale(i)];                // error: scale(i) is not a constant expression
 ```
 
-- `inline` and `constexpr` functions normally are defined in headers.
-- `assert(expr)` (defined in `cassert`) is a preprocessor macro that terminates if the expression is false.
-- The behavior of `assert` depends on the preprocessor variable `NDEBUG`. If it is defined by using the command-line option `-D NDEBUG`, `assert` does nothing.
-- **`NDEBUG` can also be used to write conditional debugging code. Local static variables `__func__`, `__FILE__`, `__LINE__`, `__TIME__`, `__DATE__` defined by the compiler can be utilized.**
+- **Unlike other functions, `inline` and `constexpr` may be defined multiple times in the program, but all of them must match exactly.** Therefore, it is safe to define them in header files.
 
-## Function Matching
+
+### Aids for Debugging
+
+- **Processor variables (e.g. `NDEBUG`) and macro names (e.g. `assert`) must be unique within the program (unless redefined identically).**
+- `assert` is a **preprocessor macro** defined in `cassert`, which acts like an inline function. `assert(expr);` evaluates `expr` and if the expression is false, `assert` writes a message and terminates the program.
+  - **`assert` does nothing if `NDEBUG` is defined.** Therefore, it should be used only to verify things that truly should never happen (for debugging), not for runtime checks.
+- `NDEBUG` can be defined either by `#define NDEBUG` or by using the command-line option `-D NDEBUG` when compiling the program.
+- **Variables and processor variables defined by the compiler/preprocessor:**
+  - `__func__`: the name of the enclosing function (e.g. `main`).
+  - `__FILE__`: the name of the current source file (e.g. `wdebug.cc`).
+  - `__LINE__`: the current line number in the source file (e.g. `27`).
+  - `__TIME__`: the time the file was compiled (e.g. `20:50:03`).
+  - `__DATE__`: the date the file was compiled (e.g. `Jul 11 2012`).
+
+
+
+## 6.6 Function Matching
 
 - Function matching involves the following steps:
-	- Identifying the candidate functions (with the same function name).
-	- Selecting viable functions (same number of arguments, matching/convertible types).
-	- **Finding the best match, if any. The compiler will determine argument by argument which function is the best match. If one function is chosen for all arguments, it is the best match. Otherwise, an ambiguous call will be reported as an error.**
-- Ranks of conversions for determining the best match:
-	- An exact match. Converting arrays/functions to pointers and discarding top-level `const` also count as an exact match.
-	- Match through a `const` conversion (adding low-level `const`).
-	- Match through a promotion **(integral types: always promote to `int` or larger).**
-	- Match through an arithmetic **(unlike promotion, all arithmetic conversions are treated as equivalent without precedence)** or pointer conversion (`nullptr`/0, `void *`).
-	- Match through a class-type conversion.
+  - Identify the set of **candidate functions** that have the same name and whose declarations are visible at the point of the call.
+  - Select **viable functions** that can be called with the given arguments (same number of parameters, matching/convertible types).
+  - Find the **best match**, if any (refer to section 6.6.1). There is an overall best match if there is one and only one function for which (otherwise the call is ambiguous - error):
+    - **The match for each argument is no worse than the match required by any other viable function.**
+    - At least one argument is a better match than any other viable function.
+
+> Casts should not be needed to call an overloaded function in well-designed systems.
+
+
+### Argument Type Conversions
+
+- Type conversions are ranked as follows:
+  - **An exact match**: identical types, array/function-to-pointer conversion, top-level `const` added/discarded.
+  - **`const` conversion** (section 4.11.2): low-level `const` added.
+  - **Integral promotion** (section 4.11.1): small integral types converted to a larger type (at least `int`).
+  - **Arithmetic conversion** (section 4.11.1) or **pointer conversion** (section 4.11.2): unsigned/signed conversions, floating-point/integral conversions, `nullptr`/`0`/`void *` conversions.
+  - **Class-type conversion** (section 14.9).
+- Notes:
+  - The small integral types always promotes to `int` or a larger integral type when type conversion is needed. Therefore, given two functions that take an `int` and a `short`, respectively, **the `short` version will be called only on values of type `short`**.
+  - **All arithmetic conversions (unsigned int/int, int/long, int/double) are equivalent.**
 
 ```cpp
+void ff(int);
+void ff(short);
+ff('a');      // calls ff(int): char promoted to int
+
 void manip(long);
 void manip(float);
-manip(3.14); // error: ambiguous call
+manip(3);     // ambiguous: 3 is an int
+manip(3L);    // calls manip(long): exact match
+manip(3.14);  // ambiguous: 3.14 is a double
+manip(3.14f); // calls manip(float): exact match
 ```
 
-## Pointers to Functions
 
-- A function’s type is determined by its return type and the types of its parameters.
-- **To declare a function pointer, we declare a pointer in place of the function name: `bool (*pf)(const string &, const string &)`.**
-- Like arrays, the name of a function is automatically converted to a pointer. The pointer can be used directly to call it. **There is no need to dereference (`*`)/get the address (`&`).**
-- When assigning an overloaded function to a pointer, the type must match exactly.
-- **A function can be used as a function parameter. We can write a parameter that looks like a function type, but it will be treated as a pointer.**
+
+## 6.7 Pointers to Functions
+
+- Declaring of a function pointer: `ret-type (*name)(parameter-list)`.
+- A function's type is determined by its return type and the types of its parameters.
+- When we use the name of a function as a value, it is automatically converted to a pointer (just like an array): `pf = func` is equivalent to `pf = &func`.
+- **We can use a pointer to a function to call the function** (no need to dereference): `pf(args)` is equivalent to `(*pf)(args)`.
+- There is no conversion between pointers to one function type and pointers to another function type, even if the return types and parameter types are convertible.
+  - When we declare a pointer to an overloaded function, **the type must match one of the overloaded functions exactly**.
+- As with arrays, we can write a function-type parameter, but it will be treated as a pointer.
+- **Type alias declarations for functions and function pointers:**
 
 ```cpp
-// third parameter is a function and is automatically treated as a pointer
-void useBigger(const string &s1, const string &s2,
-			bool pf(const string &, const string &));
-// equivalent declaration: explicitly define the parameter as a pointer to function
-void useBigger(const string &s1, const string &s2,
-			bool (*pf)(const string &, const string &));
+typedef bool Func(int, int*);
+typedef decltype(f) Func2;
+using Func3 = bool(int, int*);
+
+typedef bool(*FuncP)(int, int*);
+typedef decltype(f) *FuncP2;
+using FuncP3 = bool(*)(int, int*);
 ```
 
-- **Type alias for functions (pointers):**
+- As with arrays (section 6.3.3), **we can only return a pointer to a function, not a function**. We may use type aliases, trailing return types, or `decltype` to simplify the syntax.
 
 ```cpp
-typedef bool Func(const string&, const string&);
-typedef decltype(lengthCompare) Func2; // equivalent type
-typedef bool(*FuncP)(const string&, const string&);
-typedef decltype(lengthCompare) *FuncP2; // equivalent type
+// Original way
+int (*func(int i))(int*, int);  // returns a pointer to a function
 
-using F = int(int*, int); // F is a function type, not a pointer
-using PF = int(*)(int*, int); // PF is a pointer type
-```
+// Type aliases
+typedef int funcT(int*, int);
+using funcT = int(int*, int);
+funcT *func(int i);
 
-- As with arrays, we must write the return type as a function pointer to return it. A trailing return or `decltype`/type alias can simplify the declaration:
+// Trailing return type
+auto func(int i) -> int (*)(int*, int);
 
-```cpp
-int (*f1(int))(int*, int);
-auto f1(int) -> int (*)(int*, int);
-decltype(f) *f1(int);
+// decltype
+int f(int*, int);
+decltype(f) *func(int i);
 ```

@@ -181,7 +181,7 @@ cout << 10 < 42;    // error: (cout << 10) < 42
 
 ### The Arithmetic Conversions
 
-- **The integral promotions happen first.** They ***always*** convert small integral types to a larger integral type. Only the size matters:
+- **The integral promotions happen first.** They ***always*** convert small integral types to a larger integral type (**at least `int`**). Only the size matters:
   - The types `bool`, `char`, `signed char`, `unsigned char`, `short`, and `unsigned short` are promoted to `int` if **all values in that type** fit in an `int` (**not related to the actual value; not related to whether signed or not**). Otherwise, the value is promoted to `unsigned int`.
   - Larger `char` types (`wchar_t`, `char16_t`, `char32_t`) are promoted to the smallest type of `int`, `unsigned int`, `long`, `unsigned long`, `long long`, or `unsigned long long` that can hold all the values of the original type.
 - Afterwards, if **the operands have different signedness**:
