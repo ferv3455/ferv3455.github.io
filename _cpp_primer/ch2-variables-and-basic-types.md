@@ -106,8 +106,8 @@ int units_sold = {0};    // list initialization
 >    - If such constructors don't exist, it will fall back to direct-initializing with elements as arguments.
 >    - **Initializer lists don't require all elements to be of the same type** - they may be used for direct initialization. **This is different from the template `initializer_list`, which requires elements to be of the same type.**
 
-- A variable is **default initialized** without an initializer. The value depends on the type and where it is defined:
-  - Built-in types: **variables defined outside of functions are zero-initialized**; those defined inside are **uninitialized - undefined**. Uninitialized variables have indeterminate values, which may cause errors hard to debug.
+- A variable is **default initialized** without an initializer. ***Refer to section 7.5.3 for details.*** The value depends on the type and where it is defined:
+  - Built-in/Compound (arrays/pointers) types: **variables defined outside of blocks are zero-initialized**; **those defined inside a block are uninitialized - undefined**. Uninitialized variables have indeterminate values, which may cause errors hard to debug.
   - Classes: up to the class whether we can define objects without an initializer and what value will it have.
 
 
@@ -253,7 +253,7 @@ constexpr int limit = mf + 1;  // mf + 1 is a constant expression
 constexpr int sz = size();     // ok only if size is a constexpr function
 ```
 
-- The types can be used as `constexpr` are known as **literal types**: arithmetic, reference, pointer, etc.
+- The types can be used as `constexpr` are known as **literal types**: arithmetic types, references, pointers, and literal classes (section 7.5.6).
 - `constexpr` pointers can be initialized with objects on the heap (defined outside functions or static) but not with objects on the stack.
 - **`constexpr` specifier always applies to the pointer**, not the type to which the pointer points.
 

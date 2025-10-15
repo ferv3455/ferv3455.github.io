@@ -99,7 +99,7 @@ for (auto &c : s) {  // Here c is of type const char &
 
 ### Defining and Initializing `vector`s
 
-- [**Value initialization**](https://en.cppreference.com/w/cpp/language/value_initialization.html): if an object is constructed with an empty initializer, value initialization is performed.
+- [**Value initialization**](https://en.cppreference.com/w/cpp/language/value_initialization.html): if an object is constructed with an empty initializer, value initialization is performed. ***Refer to section 7.5.3 for details.***
     - **Examples of value initialization: `T()`, `T obj{}`, `T{}`.** Default initialization only applies for `T obj` and `T obj[]` (no initializer is provided). *Check section 7.5.3 (The Role of the Default Constructor) for more details.*
     - If `T` has user-defined default constructor, then it is default-initialized (using the constructor).
         - **If `T` has a deleted default constructor, value (default) initialization will fail.**
