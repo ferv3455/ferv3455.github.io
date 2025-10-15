@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Chapter 7-8 Types and Errors
+title: Chapter 7-8 Types and Errors (Outdated)
 date: 2024/9/19
-chapter: 7
+chapter: 97
 toc: true
 ---
 

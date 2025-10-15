@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Chapter 4-6 Control Flow and Pointers
+title: Chapter 4-6 Control Flow and Pointers (Outdated)
 date: 2024/9/19
-chapter: 4
+chapter: 94
 toc: true
 ---
 
