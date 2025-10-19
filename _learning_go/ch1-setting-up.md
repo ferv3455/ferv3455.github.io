@@ -28,6 +28,7 @@ toc: true
   - This treats the Go program like a script.
 - `go build <file>` creates an executable in the current directory. The name matches the file or package name by default. The `-o` flag can be used to specify a different name.
   - This creates a binary distributed for other people to use.
+  - **Go runtime is compiled into the binary**, so there are no external dependencies.
 
 ### Getting Third-Party Go Tools
 
