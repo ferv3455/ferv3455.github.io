@@ -73,6 +73,7 @@ toc: true
   - **Strings in Go are immutable.**
 - `rune` is an alias for `int32` (used for wide characters).
   - A rune literal's default type is `rune`.
+- **There are no character types in Go. To print a single character represented by a rune/byte, use the `%c` format specifier with `fmt.Printf` instead of `fmt.Print`/`fmt.Println`.**
 
 ### Explicit Type Conversion
 
