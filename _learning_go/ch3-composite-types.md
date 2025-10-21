@@ -187,6 +187,7 @@ struct {
 ```
 
 - Defining a **named struct type**: `type person struct { ... }`. This binds the struct type to the name `person`.
+  - `type` seems like `typedef` in C/C++ to define an alias, but **it actually defines a new type** (refer to Chapter 7).
   - Structs can be defined at package level or inside functions.
 - Variable declaration and definition:
   - **The zero value has every field set to its zero value (not `nil`).**
