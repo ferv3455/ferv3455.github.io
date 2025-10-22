@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Chapter 2 Primitive Types and Declarations
-date: 2025/10/15
+title: Chapter 2 Predeclared Types and Declarations
+date: 2025/10/22
 chapter: 2
 toc: true
 ---
 
-## Built-in Types
+## The Predeclared Types
 
 ### The Zero Value
 
@@ -89,6 +89,9 @@ var d int = x + int(y)
 - **Other types cannot be converted to booleans, whether implicitly or explicitly**, which may be used in control flow statements. One of the comparison operators must be used to produce a boolean value.
   - Idiomatic Go values comprehensibility over conciseness.
 
+### Literals Are Untyped
+
+- Literals are untyped - integer literals can be added to floating-point literals without explicit conversion. They can be used with any variable as long as the type is compatible.
 
 
 ## `var` Versus `:=`

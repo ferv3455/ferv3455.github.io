@@ -60,6 +60,7 @@ toc: true
 - The type of a function is determined by its **signature** - `func`, types of parameters, types of return values.
   - Example: `func(int, int) (int, error)`.
 - Functions are values and can be assigned to variables or stored in data structures.
+- **The zero value for a function is `nil`.**
 
 > Error handling is what separates the professionals from the amateurs.
 

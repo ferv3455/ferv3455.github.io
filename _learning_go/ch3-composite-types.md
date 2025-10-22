@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chapter 3 Composite Types
-date: 2025/10/17
+date: 2025/10/22
 chapter: 3
 toc: true
 ---
@@ -68,6 +68,11 @@ toc: true
   - `make([]int, 5, 10)`: a slice of length 5 and capacity 10 (all initialized to zero value).
   - Specifying capacity less than length is a compile-time error (constant or literal as capacity) or run-time panic (variable as capacity).
 
+### Emptying a Slice (Go 1.21)
+
+- `clear(slice)` sets all of the slices elements **to their zero value**.
+
+
 ### Declaring Your Slice
 
 - The primary goal is to **minimize the number of times the slice needs to grow**.
@@ -104,7 +109,7 @@ fmt.Println(z) // output: [30 40 70]
 
 - **Using the slice expression on an array creates a slice.**
   - `[:]` converts the array to a slice without copying.
-  - The underlying memory is also shared between the array and the slice.
+  - **The underlying memory is also shared between the array and the slice.**
 
 ### `copy`
 
@@ -119,6 +124,14 @@ fmt.Println(x, num) // output: [2 3 4 4] 3
 
 - Arrays cannot be the source or destination of `copy`, but you may convert them to slices with `[:]`.
 
+### Converting Slices to Arrays
+
+- **Slices can be converted to arrays with type conversion: `([size]type)(slice)`.**
+  - **The data in the slice is copied to the new memory.**
+  - **The size can be smaller than the slice length - an array will be created from a subset of the slice. However, it cannot be bigger.**
+- **Slices can be converted to pointers to arrays with type conversion: `(*[size]type)(slice)`.**
+  - **No data is copied. The underlying memory is shared between the array and the slice.**
+  - **The size must be less than or equal to the slice length.**
 
 
 ## Strings and Runes and Bytes
@@ -163,6 +176,17 @@ fmt.Println(m["Alice"]) // output: 1
 
 - `delete(m, key)` removes the key-value pair from the map.
   - **If the key isn't present or if the map is `nil`, nothing happens.** Therefore, there is no need to check before deleting.
+
+### Emptying a Map (Go 1.21)
+
+- `clear(m)` removes all key-value pairs from the map.
+  - It works on `nil` maps as well.
+
+
+### Comparing Maps (Go 1.21)
+
+- The `maps` package contains helper functions for working with maps: `Equal`, `EqualFunc` can be used to compare two maps for equality.
+
 
 ### Using Maps as Sets
 
