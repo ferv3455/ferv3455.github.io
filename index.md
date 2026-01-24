@@ -7,7 +7,7 @@ title: "About Me - Yangcheng Gu"
 
 I'm Yangcheng Gu, a software engineer at TikTok based in San Jose, California, United States. I hold a Master's degree in Information Networking (MSIN) from Carnegie Mellon University and a Bachelor's degree in Software Engineering from Tsinghua University.
 
-I'm interested in scalable, maintainable system design and development. Systems are like buildings: the people who make the real difference aren't those laying the bricks, but those drawing the blueprints.
+I'm interested in scalable, maintainable system design and development. I believe software development is not just about making things work, but about building them well — with reliability, scalability, readability, and long-term maintainability in mind.
 
 
 ## About the Webpage

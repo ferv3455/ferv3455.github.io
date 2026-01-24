@@ -49,7 +49,7 @@ plugins:
 # Header pages
 header_pages:
   - notes.md
-  - leetcode.md
+  # - leetcode.md
 
 # TOC settings
 toc:
