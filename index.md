@@ -3,11 +3,12 @@ layout: home
 title: "About Me - Yangcheng Gu"
 ---
 
-## Introduction
+## Self-Introduction
 
-**I am a second-year graduate student at Carnegie Mellon University, pursuing my degree of Master of Science in Information Networking (MSIN).** I expect to finish my coursework in December 2025 and kick off my career in 2026.
+I'm Yangcheng Gu, a software engineer at TikTok based in San Jose, California, United States. I hold a Master's degree in Information Networking (MSIN) from Carnegie Mellon University and a Bachelor's degree in Software Engineering from Tsinghua University.
 
-As an international student from China, I finished my school years in my hometown Shanghai and my bachelor's degree at Tsinghua University in Beijing.
+I'm interested in scalable, maintainable system design and development. Systems are like buildings: the people who make the real difference aren't those laying the bricks, but those drawing the blueprints.
+
 
 ## About the Webpage
 
@@ -16,7 +17,7 @@ This website acts as an introduction to my academic and professional experience 
 ## Education
 
 - **Carnegie Mellon University**, Master of Science in Information Networking (GPA: 4.00/4.00) <small>(August 2024 – December 2025)</small>
-  - Courses: Cloud Computing, Distributed Systems, Database Systems, Algorithms Design and Analysis
+  - Courses: Cloud Computing, Distributed Systems, Database Systems, Algorithms Design and Analysis, Machine Learning
 - **Tsinghua University**, Bachelor's in Software Engineering (GPA: 3.90/4.00) <small>(August 2019 – July 2024)</small>
   - Courses: Computer Architecture, Software Engineering, Data Structures and Algorithms, Artificial Intelligence
   - Honors: Scholarship for Academic Excellence (four times in 2020, 2021, 2022, 2023)
