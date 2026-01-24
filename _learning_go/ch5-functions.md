@@ -61,6 +61,7 @@ toc: true
   - Example: `func(int, int) (int, error)`.
 - Functions are values and can be assigned to variables or stored in data structures.
 - **The zero value for a function is `nil`.**
+- **Functions cannot be overloaded** - each function name stores only one function value.
 
 > Error handling is what separates the professionals from the amateurs.
 
