@@ -21,9 +21,9 @@
 # Footer
 title: Ferv's Corner
 author: Yangcheng Gu
-email: yangcheg@andrew.cmu.edu
+email: yangcheng0819@outlook.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Second-year MSIN student at CMU. This is my personal website where I share notes on programming and algorithms.
+  Software engineer at TikTok. This is my personal website where I share notes on programming and algorithms.
 
 # Links
 cv_link: ./assets/files/Resume - Yangcheng Gu.pdf
