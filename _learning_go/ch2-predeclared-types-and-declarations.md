@@ -92,6 +92,7 @@ var d int = x + int(y)
 ### Literals Are Untyped
 
 - Literals are untyped - integer literals can be added to floating-point literals without explicit conversion. They can be used with any variable as long as the type is compatible.
+  - **When a literal is operated with typed variables, the literal takes the type of the other variable.** If the literal's value is not compatible with the type, it is a compile-time error.
 
 
 ## `var` Versus `:=`

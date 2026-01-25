@@ -94,7 +94,8 @@ result2 := f2(adder, 10)  // calls adder.AddTo(10)
 ### Type Declarations Aren't Inheritance
 
 - A type declared based on another has the same underlying type, but it is a distinct type: **they cannot be used interchangeably without explicit conversion, and methods are not inherited**.
-- Since literals and constants have no types, they can be assigned to/used in operations with user-defined types with compatible underlying types.
+- **Since literals and constants have no types, they can be assigned to/used in operations with user-defined types with compatible underlying types.**
+- **Numeric operations are allowed on user-defined types with numeric underlying types (`MyInt` based on `int`), but not between different types (`MyInt` and `int`).**
 
 ### Types Are Executable Documentation
 
@@ -290,7 +291,8 @@ func process (r io.Reader) error {} // applies to both *os.File and *gzip.Reader
 ## Interfaces Are Comparable
 
 - Two instances of an interface type are equal only if their types are equal and their values are equal. **Whether to compare the actual values or pointers depends on the interface value types.**
-  - If the underlying value types are not comparable, comparing the interface instances will trigger a runtime panic.
+  - Here the instance type includes whether it is a pointer or a value.
+  - **If the underlying value types are not comparable, comparing the interface instances will trigger a runtime panic.**
   - If you have to compare two interface instances (e.g., in a function), **you may use the `Comparable` method on `reflect.Value` to inspect the interface before using it with `==` or `!=`**.
 
 ```go
