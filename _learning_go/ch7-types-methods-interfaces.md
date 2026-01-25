@@ -282,10 +282,19 @@ func process (r io.Reader) error {} // applies to both *os.File and *gzip.Reader
 
 ## Interfaces and `nil`
 
-- Interfaces are implemented as a struct with two pointer fields: one for the value and one for the type.
+- Interfaces are implemented as a struct with two fields: one for the value and one for the type.
   - **An interface is `nil` if and only if both the value and the type pointers are `nil`.**
-  - As long as the type field is non-`nil`, the interface is non-`nil` - even if the value field is `nil`. **You must use reflection to check whether the value is `nil`.**
+  - As long as the type field is non-`nil`, the interface is non-`nil` - even if the value field is `nil`. **You must use reflection/type assertion to check whether the value is `nil`.**
 - `nil` for an interface variable means whether you can invoke methods on it.
+
+```go
+var p *int = nil
+var i any = p         // i is non-nil: type is *int, value is nil
+fmt.Println(i == nil) // false
+
+i = nil               // i is nil: type is nil, value is nil
+fmt.Println(i == nil) // true
+```
 
 
 ## Interfaces Are Comparable
