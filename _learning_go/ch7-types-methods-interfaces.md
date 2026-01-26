@@ -266,7 +266,7 @@ func process (r io.Reader) error {} // applies to both *os.File and *gzip.Reader
 ## Embedding and Interfaces
 
 - An interface can be embedded within another interface.
-- **An interface can also be embedded in a struct.** This is the same as having a field whose type is the interface.
+- **An interface can also be embedded in a struct.** In this way, the struct implements the embedded interface with all its methods. However, **the methods are not implemented if not overridden** (they are `nil`) - calling them will cause a runtime panic.
 
 
 ## Accept Interfaces, Return Structs
