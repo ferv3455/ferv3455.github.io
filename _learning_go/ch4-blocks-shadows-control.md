@@ -82,6 +82,12 @@ if n := rand.Intn(10); n > 5 {
   - For `for-range` loops, new variables are created and initialized with the next value from the underlying data structure.
 - This is a backward-breaking change.
 
+```go
+for _, v := range x {
+    fmt.Printf("%p\n", &v) // different address on each iteration
+}
+```
+
 
 ### Labeling Your `for` Statements
 
