@@ -6,6 +6,8 @@ chapter: 15
 toc: true
 ---
 
+> This note does not cover all sections of Chapter 15 (code coverage, fuzzing, benchmarks, and race detector).
+
 ## Understanding the Basics of Testing
 
 - Go places its tests in the same directory and package as the production code. They are able to access and test unexported functions and variables.
@@ -166,21 +168,6 @@ for _, d := range data {
 ```
 
 
-## Checking Your Code Coverage
-
-WIP
-
-
-## Fuzzing
-
-WIP
-
-
-## Using Benchmarks
-
-WIP
-
-
 ## Using Stubs in Go
 
 > [**Mocks and stubs**](https://martinfowler.com/articles/mocksArentStubs.html): a stub returns a canned value for a given input, while a mock validates that a set of calls happen in the expected order with the expected inputs.
@@ -249,15 +236,84 @@ for _, d := range data {
 
 ## Using `httptest`
 
-WIP
+- `net/http/httptest` package allows you to **test HTTP clients with a local server**.
+
+```go
+// Define an input type for a test case
+// Note: you controls both the server and the client, so input here includes both request and response data
+type info struct {
+    expression string // client input
+    code       int    // response code
+    body       string // response body
+}
+var io info // global variable to hold the current test case
+
+// Define a server
+server := httptest.NewServer(
+    http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
+        // Check the request
+        expression := req.URL.Query().Get("expression")
+        if expression != io.expression {
+            rw.WriteHeader(http.StatusBadRequest)
+            fmt.Fprintf(rw, "unexpected expression: got %s, want %s", expression, io.expression)
+            return
+        }
+
+        // Send the response
+        rw.WriteHeader(io.code)
+        rw.Write([]byte(io.body))
+    }),
+)
+defer server.Close()
+
+// Define test cases
+data := []struct{
+    name   string
+    io     info
+    result float64
+    errMsg string
+}{
+    {"Case 1", info{"2 + 2 * 10", http.StatusOK, "22"}, 22, ""},
+}
+
+// Run tests with a client instance
+rs := RemoteSolver{
+    ServerURL: server.URL,
+    Client:    server.Client(),
+}
+for _, d := range data {
+    t.Run(d.name, func(t *testing.T) {
+        io = d.io
+        result, err := rs.Solve(context.Background(), d.io.expression)
+        if result != d.result {
+            t.Errorf("expected %f, got %f", d.result, result)
+        }
+        var errMsg string
+        if err != nil {
+            errMsg = err.Error()
+        }
+        if errMsg != d.errMsg {
+            t.Errorf("expected error %s, got %s", d.errMsg, errMsg)
+        }
+    })
+}
+```
 
 
 ## Using Integration Tests and Build Tags
 
-WIP
+- Build tags (e.g., `//go:build integration`) may be used to specify code for integration tests.
 
+```bash
+go test -tags integration -v ./...
+```
 
-## Finding Concurrency Problems with the Data Race Detector
+- Some developers are against using build tags for integration tests (hard to find out build tags to use) in favor of environment variables: **check an environment variable in each integration test and use `t.Skip()` to skip the test with a detailed message** if the variable is not set.
+- `go test -short` may be used to skip long-running tests if slow tests are marked in this way:
 
-WIP
+```go
+if testing.Short() {
+    t.Skip("skipping test in short mode.")
+}
+```
 
