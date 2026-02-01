@@ -72,6 +72,8 @@ collections:
     output: true
   learning_go:
     output: true
+  100_go_mistakes:
+    output: true
   leetcode_problems:
     output: true
   leetcode_notes:

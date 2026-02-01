@@ -47,7 +47,7 @@ title: "Personal Notes"
 
 ## Programming Languages
 
-{% assign notebooks = "cpp_primer:C++ Primer,fluent_python:Fluent Python,effective_python:Effective Python,learning_go:Learning Go" | split: "," %}
+{% assign notebooks = "cpp_primer:C++ Primer,fluent_python:Fluent Python,effective_python:Effective Python,learning_go:Learning Go,100_go_mistakes:100 Go Mistakes" | split: "," %}
 
 {% for pair in notebooks %}
   {% assign parts = pair | split: ":" %}
