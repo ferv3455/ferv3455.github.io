@@ -28,7 +28,9 @@ title: "Personal Notes"
   }
 </style>
 
-## Computer Science Fundamentals
+All notes have been migrated to a specialized personal note website: **[https://ferv3455.github.io/personal-notes/notes/](https://ferv3455.github.io/personal-notes/notes/)**.
+
+<!-- ## Computer Science Fundamentals
 
 <details>
   <summary>Intro to Computer Systems</summary>
@@ -111,5 +113,5 @@ title: "Personal Notes"
       </li>
     {% endfor %}
   </ul>
-</details>
+</details> -->
 

@@ -60,27 +60,9 @@ toc:
 collections:
   personal:
     output: true
-  cpp_primer:
-    output: true
-  cracking_the_coding_interview:
-    output: true
-  cs_fundamentals:
-    output: true
-  effective_python:
-    output: true
-  fluent_python:
-    output: true
-  learning_go:
-    output: true
-  100_go_mistakes:
-    output: true
   leetcode_problems:
     output: true
   leetcode_notes:
-    output: true
-  miscellaneous:
-    output: true
-  random_notes_of_coding:
     output: true
 
 # Exclude from processing.
